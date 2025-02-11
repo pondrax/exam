@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "serve": "node -r dotenv/config web/server.js",
+    "serve": "node -r dotenv/config web/rtc.js",
     "dev": "vite dev",
     "dev:base": "cd base && pocketbase serve",
     "build": "vite build",
