@@ -1,0 +1,331 @@
+{
+  "indexes": {
+    "users": [
+      "name",
+      "name:lower",
+      "avatar",
+      "created",
+      "updated"
+    ],
+    "applicants": [
+      "name",
+      "name:lower",
+      "nik",
+      "nik:lower",
+      "address",
+      "address:lower",
+      "birthDate",
+      "created",
+      "updated"
+    ],
+    "templates": [
+      "name",
+      "name:lower",
+      "description",
+      "status",
+      "created",
+      "updated"
+    ],
+    "streams": [
+      "email",
+      "email:lower",
+      "category",
+      "category:lower",
+      "audioData",
+      "audioData:lower",
+      "imageData",
+      "created",
+      "updated"
+    ]
+  },
+  "fields": {
+    "users": [
+      {
+        "name": "name",
+        "id": "text1579384326",
+        "system": false,
+        "hidden": false,
+        "presentable": false,
+        "min": 0,
+        "max": 255,
+        "pattern": "",
+        "autogeneratePattern": "",
+        "required": false,
+        "primaryKey": false,
+        "type": "text",
+        "sample": "pondra setiawan"
+      },
+      {
+        "name": "avatar",
+        "id": "file376926767",
+        "system": false,
+        "hidden": false,
+        "presentable": false,
+        "maxSize": 0,
+        "maxSelect": 1,
+        "mimeTypes": [
+          "image/jpeg",
+          "image/png",
+          "image/svg+xml",
+          "image/gif",
+          "image/webp"
+        ],
+        "thumbs": [],
+        "protected": false,
+        "required": false,
+        "type": "file",
+        "sample": "acg8oc_kux_dw_q_r8b9o7w_opzj5_lk_wbxonh_f_vg_nhq_fz_t969_j1_mr_u_ww_s96_c_blafd90fka_eglpu7gvd2.png"
+      },
+      {
+        "name": "created",
+        "id": "autodate2990389176",
+        "system": false,
+        "hidden": false,
+        "presentable": false,
+        "onCreate": true,
+        "onUpdate": false,
+        "type": "autodate",
+        "sample": "2025-02-03 07:46:05.903Z"
+      },
+      {
+        "name": "updated",
+        "id": "autodate3332085495",
+        "system": false,
+        "hidden": false,
+        "presentable": false,
+        "onCreate": true,
+        "onUpdate": true,
+        "type": "autodate",
+        "sample": "2025-02-03 07:46:05.906Z"
+      }
+    ],
+    "applicants": [
+      {
+        "name": "name",
+        "id": "text1579384326",
+        "system": false,
+        "hidden": false,
+        "presentable": false,
+        "min": 0,
+        "max": 0,
+        "pattern": "",
+        "autogeneratePattern": "",
+        "required": false,
+        "primaryKey": false,
+        "type": "text",
+        "sample": ""
+      },
+      {
+        "name": "nik",
+        "id": "text3545716486",
+        "system": false,
+        "hidden": false,
+        "presentable": false,
+        "min": 0,
+        "max": 0,
+        "pattern": "",
+        "autogeneratePattern": "",
+        "required": false,
+        "primaryKey": false,
+        "type": "text",
+        "sample": ""
+      },
+      {
+        "name": "address",
+        "id": "text223244161",
+        "system": false,
+        "hidden": false,
+        "presentable": false,
+        "min": 0,
+        "max": 0,
+        "pattern": "",
+        "autogeneratePattern": "",
+        "required": false,
+        "primaryKey": false,
+        "type": "text",
+        "sample": ""
+      },
+      {
+        "name": "birthDate",
+        "id": "date852947741",
+        "system": false,
+        "hidden": false,
+        "presentable": false,
+        "min": "",
+        "max": "",
+        "required": false,
+        "type": "date",
+        "sample": ""
+      },
+      {
+        "name": "created",
+        "id": "autodate2990389176",
+        "system": false,
+        "hidden": false,
+        "presentable": false,
+        "onCreate": true,
+        "onUpdate": false,
+        "type": "autodate",
+        "sample": "2025-02-03 04:21:44.985Z"
+      },
+      {
+        "name": "updated",
+        "id": "autodate3332085495",
+        "system": false,
+        "hidden": false,
+        "presentable": false,
+        "onCreate": true,
+        "onUpdate": true,
+        "type": "autodate",
+        "sample": "2025-02-04 01:36:29.060Z"
+      }
+    ],
+    "templates": [
+      {
+        "name": "name",
+        "id": "text1579384326",
+        "system": false,
+        "hidden": false,
+        "presentable": false,
+        "min": 0,
+        "max": 0,
+        "pattern": "",
+        "autogeneratePattern": "",
+        "required": false,
+        "primaryKey": false,
+        "type": "text",
+        "sample": "tkd"
+      },
+      {
+        "name": "description",
+        "id": "editor1843675174",
+        "system": false,
+        "hidden": false,
+        "presentable": false,
+        "maxSize": 0,
+        "convertURLs": false,
+        "required": false,
+        "type": "editor",
+        "sample": ""
+      },
+      {
+        "name": "status",
+        "id": "select2063623452",
+        "system": false,
+        "hidden": false,
+        "presentable": false,
+        "values": [
+          "active",
+          "disabled"
+        ],
+        "maxSelect": 1,
+        "required": true,
+        "type": "select",
+        "sample": "active"
+      },
+      {
+        "name": "created",
+        "id": "autodate2990389176",
+        "system": false,
+        "hidden": false,
+        "presentable": false,
+        "onCreate": true,
+        "onUpdate": false,
+        "type": "autodate",
+        "sample": "2025-02-04 02:28:27.464Z"
+      },
+      {
+        "name": "updated",
+        "id": "autodate3332085495",
+        "system": false,
+        "hidden": false,
+        "presentable": false,
+        "onCreate": true,
+        "onUpdate": true,
+        "type": "autodate",
+        "sample": "2025-02-04 02:28:27.464Z"
+      }
+    ],
+    "streams": [
+      {
+        "name": "email",
+        "id": "text3885137012",
+        "system": false,
+        "hidden": false,
+        "presentable": false,
+        "min": 0,
+        "max": 0,
+        "pattern": "",
+        "autogeneratePattern": "",
+        "required": false,
+        "primaryKey": false,
+        "type": "text",
+        "sample": "sample"
+      },
+      {
+        "name": "category",
+        "id": "text105650625",
+        "system": false,
+        "hidden": false,
+        "presentable": false,
+        "min": 0,
+        "max": 0,
+        "pattern": "",
+        "autogeneratePattern": "",
+        "required": false,
+        "primaryKey": false,
+        "type": "text",
+        "sample": "sample"
+      },
+      {
+        "name": "audioData",
+        "id": "text776227588",
+        "system": false,
+        "hidden": false,
+        "presentable": false,
+        "min": 0,
+        "max": 0,
+        "pattern": "",
+        "autogeneratePattern": "",
+        "required": false,
+        "primaryKey": false,
+        "type": "text",
+        "sample": "sample"
+      },
+      {
+        "name": "imageData",
+        "id": "editor406885876",
+        "system": false,
+        "hidden": false,
+        "presentable": false,
+        "maxSize": 0,
+        "convertURLs": false,
+        "required": false,
+        "type": "editor",
+        "sample": "sample"
+      },
+      {
+        "name": "created",
+        "id": "autodate2990389176",
+        "system": false,
+        "hidden": false,
+        "presentable": false,
+        "onCreate": true,
+        "onUpdate": false,
+        "type": "autodate",
+        "sample": "sample"
+      },
+      {
+        "name": "updated",
+        "id": "autodate3332085495",
+        "system": false,
+        "hidden": false,
+        "presentable": false,
+        "onCreate": true,
+        "onUpdate": true,
+        "type": "autodate",
+        "sample": "sample"
+      }
+    ]
+  }
+}
