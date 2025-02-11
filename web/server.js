@@ -49,11 +49,12 @@ io.on("connection", async (socket) => {
     callback(router.rtpCapabilities);
   });
 
+  console.log(process.env.LISTEN_IP)
   socket.on("createTransport", async (callback) => {
     const transport = await router.createWebRtcTransport({
-      listenInfos: [{ ip: "127.0.0.1", announcedIp: null }],
-      enableUdp: true,
-      enableTcp: true,
+      listenInfos: [{ ip: process.env.LISTEN_IP }],
+      // enableUdp: true,
+      // enableTcp: false,
       // iceServers: [
       //   { urls: 'stun:stun.l.google.com:19302' }, // Google's public STUN server
       //   // Add more STUN servers if needed
@@ -92,8 +93,8 @@ io.on("connection", async (socket) => {
   });
 
   socket.on("consume", async ({ id, rtpCapabilities }, callback) => {
-    const transport = clients[socket.id].transports[id]
-
+    const transport = clients[socket.id].transports[id];
+    if (!transport) return callback({})
     const consumers = {}
     for (const [key, client] of Object.entries(clients)) {
       consumers[key] = {}
@@ -106,6 +107,7 @@ io.on("connection", async (socket) => {
             rtpCapabilities,
             paused: false,
           });
+
           consumers[key][kind] = {
             id: consumer.id,
             producerId: producer.id,
