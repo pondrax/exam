@@ -69,7 +69,8 @@
 						Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi
 						exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.
 					</p>
-					<button class="btn btn-primary">Get Started</button>
+					<a href="/exam" class="btn btn-primary" target="_blank">DEMO EXAM</a>
+					<a href="/exam/live" class="btn btn-secondary" target="_blank">DEMO EXAM LIVE</a>
 				</div>
 			</div>
 		</div>
@@ -78,7 +79,7 @@
 			alt="sample"
 			class="w-full"
 		/> -->
-		<div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+		<div class="absolute top-1/2 right-5 left-5 flex -translate-y-1/2 transform justify-between">
 			<a href="#slide4" class="btn btn-circle">❮</a>
 			<a href="#slide2" class="btn btn-circle">❯</a>
 		</div>
@@ -89,7 +90,7 @@
 			alt="sample"
 			class="w-full"
 		/>
-		<div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+		<div class="absolute top-1/2 right-5 left-5 flex -translate-y-1/2 transform justify-between">
 			<a href="#slide1" class="btn btn-circle">❮</a>
 			<a href="#slide3" class="btn btn-circle">❯</a>
 		</div>
@@ -100,7 +101,7 @@
 			alt="sample"
 			class="w-full"
 		/>
-		<div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+		<div class="absolute top-1/2 right-5 left-5 flex -translate-y-1/2 transform justify-between">
 			<a href="#slide2" class="btn btn-circle">❮</a>
 			<a href="#slide4" class="btn btn-circle">❯</a>
 		</div>
@@ -111,7 +112,7 @@
 			alt="sample"
 			class="w-full"
 		/>
-		<div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+		<div class="absolute top-1/2 right-5 left-5 flex -translate-y-1/2 transform justify-between">
 			<a href="#slide3" class="btn btn-circle">❮</a>
 			<a href="#slide1" class="btn btn-circle">❯</a>
 		</div>

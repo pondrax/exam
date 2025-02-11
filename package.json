@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
+    "serve": "node web/server.js",
     "dev": "vite dev",
     "dev:base": "cd base && pocketbase serve",
     "build": "vite build",

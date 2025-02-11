@@ -119,7 +119,14 @@ io.on("connection", async (socket) => {
   });
 
   socket.on('getInfo', async (callback) => {
-    callback({ clients })
+    const batch = {};
+    Object.values(clients).forEach(client => {
+      // console.log(client)
+      if (client.batch) {
+        batch[client.batch] = true
+      }
+    })
+    callback({ batch: Object.keys(batch), clients })
   })
 });
 

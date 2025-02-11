@@ -6,9 +6,11 @@
 	import questionsData from './questions';
 	import { PUBLIC_SOCKET_URL } from '$env/static/public';
 
-	let localStream: MediaStream;
-	let localVideo: HTMLVideoElement;
+	let loading = $state(true);
+	let localStream = $state() as MediaStream;
+	let localVideo = $state() as HTMLVideoElement;
 
+	let examActive = $state(false);
 	let socket: Socket;
 	let device: mediasoupClient.Device;
 	let producerTransport: mediasoupClient.types.Transport;
@@ -64,7 +66,7 @@
 		localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
 		localVideo.srcObject = localStream;
 		localStream.getTracks().forEach(async (track) => {
-			producerTransport.produce({ track });
+			producerTransport?.produce({ track });
 		});
 	}
 
@@ -82,6 +84,10 @@
 		socket.on('connect', () => {
 			console.log('Connected to server');
 			socket.emit('join', { batch, email });
+			examActive = true;
+			setTimeout(() => {
+				loading = false;
+			}, 1000);
 		});
 
 		(async () => {
@@ -94,7 +100,21 @@
 	});
 </script>
 
-<div class="navbar bg-base-100 shadow-sm">
+{#if loading}
+	<div
+		class="bg-base-200 fixed top-0 right-0 bottom-0 left-0 z-20 flex items-center justify-center"
+	>
+		<div class="loading"></div>
+	</div>
+{/if}
+
+<div class="fixed right-0 bottom-0 left-0 w-60">
+	<div class="mx-auto flex w-full max-w-7xl grow items-end gap-5 p-5">
+		<!-- svelte-ignore a11y_media_has_caption -->
+		<video bind:this={localVideo} autoplay playsinline class="rounded-xl border"></video>
+	</div>
+</div>
+<div class="navbar bg-base-100 sticky top-0 z-10 shadow-sm">
 	<div class="flex-none">
 		<img src="/favicon.png" class="w-15" alt="logo" />
 	</div>
@@ -115,33 +135,38 @@
 		<button class="btn btn-primary"> Selesai </button>
 	</div>
 </div>
-<div class="mx-auto flex w-full max-w-7xl grow gap-5 p-5">
-	<div class="flex-grow p-5 text-xl">
-		{#if questionIndex > -1}
-			{#if questions[questionIndex]}
-				{@const question = questions[questionIndex]}
-				<div class="card">
-					<div class="text-xl">
-						{@html question.question}
-					</div>
-					<ul class="menu menu-lg">
-						{#each question.options as opt}
-							<li>
-								<button>{opt.label}</button>
-							</li>
-						{/each}
-					</ul>
-				</div>
-			{/if}
-		{/if}
+{#if !localStream}
+	<div class="alert alert-error">
+		<iconify-icon icon="bx:error-circle" class="text-xl"></iconify-icon>
+		<div>Aktifkan Kamera Untuk Melanjutkan</div>
+		<div>
+			<button type="button" onclick={startProducing} class="btn btn-neutral">Muat Ulang</button>
+		</div>
 	</div>
-	<div class="flex-none">
-		<div class="flex w-60 flex-grow-0 flex-col gap-5">
-			<div class="shrink-0">
-				<!-- svelte-ignore a11y_media_has_caption -->
-				<video bind:this={localVideo} autoplay playsinline class="rounded-xl border"></video>
-			</div>
-			<div class="max-h-100 grid grow grid-cols-5 gap-1 overflow-auto">
+{/if}
+{#if examActive}
+	<div class="mx-auto flex w-full max-w-7xl grow gap-5 p-5">
+		<div class="flex-grow p-5 text-xl">
+			{#if questionIndex > -1}
+				{#if questions[questionIndex]}
+					{@const question = questions[questionIndex]}
+					<div class="card">
+						<div class="text-xl">
+							{@html question.question}
+						</div>
+						<ul class="menu menu-lg">
+							{#each question.options as opt}
+								<li>
+									<button>{opt.label}</button>
+								</li>
+							{/each}
+						</ul>
+					</div>
+				{/if}
+			{/if}
+		</div>
+		<div class="w-60 flex-none">
+			<div class="grid grow grid-cols-5 gap-1">
 				{#each questions as que, i}
 					<button
 						class="btn"
@@ -154,4 +179,4 @@
 			</div>
 		</div>
 	</div>
-</div>
+{/if}
