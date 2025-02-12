@@ -11,6 +11,18 @@
 	const roomId: string = 'room1'; // Example room ID
 	const socket: Socket = io(PUBLIC_SOCKET_URL); // Connect to the Socket.IO server
 
+	// STUN/TURN servers (Xirsys or Twilio TURN recommended)
+	const iceServers = [
+		{ urls: 'stun:stun.l.google.com:19302' },
+		{ urls: 'stun:stun1.l.google.com:19302' },
+		{ urls: 'stun:stun2.l.google.com:19302' }
+		// {
+		// 	urls: 'turn:your-turn-server.xirsys.com:3478', // Replace with Xirsys or Twilio TURN
+		// 	username: 'your-username',
+		// 	credential: 'your-password'
+		// }
+	];
+
 	// Join room and set up local media stream on component mount
 	onMount(async () => {
 		socket.emit('join-room', roomId);
@@ -27,19 +39,22 @@
 
 		// Create peer connection if localStream is available
 		if (localStream) {
-			peerConnection = new RTCPeerConnection();
+			peerConnection = new RTCPeerConnection({ iceServers });
 			localStream.getTracks().forEach((track) => peerConnection?.addTrack(track, localStream));
 
 			// Handle ICE candidates
 			peerConnection.onicecandidate = (event: RTCPeerConnectionIceEvent) => {
 				if (event.candidate) {
+					console.log('Sending ICE candidate:', event.candidate);
 					socket.emit('ice-candidate', event.candidate, roomId);
 				}
 			};
 
 			// Handle remote stream
 			peerConnection.ontrack = (event: RTCTrackEvent) => {
-				remoteVideo.srcObject = event.streams[0];
+				if (!remoteVideo.srcObject) {
+					remoteVideo.srcObject = event.streams[0];
+				}
 			};
 		}
 	});
@@ -83,7 +98,7 @@
 	// Handle incoming ICE candidates
 	socket.on('ice-candidate', (candidate: RTCIceCandidate) => {
 		if (!peerConnection) return;
-		peerConnection.addIceCandidate(candidate);
+		peerConnection.addIceCandidate(new RTCIceCandidate(candidate));
 	});
 </script>
 

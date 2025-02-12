@@ -52,7 +52,7 @@ io.on("connection", async (socket) => {
   console.log(process.env.LISTEN_IP)
   socket.on("createTransport", async (callback) => {
     const transport = await router.createWebRtcTransport({
-      listenInfos: [{ ip: process.env.LISTEN_IP }],
+      listenInfos: [{ ip: process.env.LISTEN_IP, announcedAddress: process.env.ANNOUNCED_ADDRESS }],
       // enableUdp: true,
       // enableTcp: false,
       // iceServers: [

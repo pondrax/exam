@@ -15,26 +15,29 @@ const io = new Server(server, {
 io.on('connection', socket => {
   console.log('a user connected');
 
+  socket.on('join-room', roomId => {
+    socket.join(roomId);
+    console.log(`User joined room: ${roomId}`);
+  });
+
   // Relay offer/answer and ICE candidates
   socket.on('offer', (offer, roomId) => {
+    console.log('Relaying offer to', roomId);
     socket.broadcast.to(roomId).emit('offer', offer);
   });
 
   socket.on('answer', (answer, roomId) => {
+    console.log('Relaying answer to', roomId);
     socket.broadcast.to(roomId).emit('answer', answer);
   });
 
   socket.on('ice-candidate', (candidate, roomId) => {
+    console.log('Relaying ICE candidate to', roomId);
     socket.broadcast.to(roomId).emit('ice-candidate', candidate);
   });
 
-  // Create or join a room
-  socket.on('join-room', roomId => {
-    socket.join(roomId);
-  });
-
   socket.on('disconnect', () => {
-    console.log('user disconnected');
+    console.log('User disconnected');
   });
 });
 
