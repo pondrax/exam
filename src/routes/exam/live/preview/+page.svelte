@@ -4,10 +4,11 @@
 	import * as mediasoupClient from 'mediasoup-client';
 	import { tick } from 'svelte';
 	import { PUBLIC_SOCKET_URL } from '$env/static/public';
+	import { delay } from '$lib/utils';
 
 	let batch = page.url.searchParams.get('batch');
 	let clients: Record<string, Record<string, string>> = $state({});
-	let remoteStreams: Record<string, MediaStream> = $state({});
+	let remoteStreams: Record<string, any> = $state({});
 	let remoteVideoStreams: Record<string, HTMLVideoElement> = $state({});
 
 	let socket: Socket;
@@ -26,42 +27,38 @@
 			socket.emit('connectTransport', { id: consumerTransport.id, dtlsParameters }, callback);
 		});
 	}
-
 	async function startConsuming() {
 		console.log('startConsuming');
+		// Request consumer data from the server
 		const consumerData: Record<
 			string,
-			Record<string, mediasoupClient.types.ConsumerOptions>
+			Record<string, mediasoupClient.types.ConsumerOptions & { name?: string }>
 		> = await socket.emitWithAck('consume', {
 			id: consumerTransport.id,
 			rtpCapabilities: device.rtpCapabilities
 		});
 
 		console.log('consumerData:', consumerData);
-		for (const [key, con] of Object.entries(consumerData)) {
-			let active = false;
+
+		remoteStreams = {};
+		for (const [key, consumer] of Object.entries(consumerData)) {
+			let name;
 			const stream = new MediaStream();
 			for (const kind of ['video', 'audio']) {
-				if (con[kind]) {
-					active = true;
-					const consumer = await consumerTransport.consume(con[kind]);
-					// console.log(consumer.track.readyState);
-					stream.addTrack(consumer.track);
+				if (consumer[kind]) {
+					const { track } = await consumerTransport.consume(consumer[kind]);
+					stream.addTrack(track);
+					name = consumer[kind]?.name;
+					// console.log('track:', name, track);
 				}
 			}
-			if (active) {
-				remoteStreams[key] = stream;
+
+			if (name) {
+				remoteStreams[key] = { name };
 				await tick();
 				remoteVideoStreams[key].srcObject = stream;
 			}
 		}
-		getInfo();
-	}
-
-	async function getInfo() {
-		console.log('getInfo');
-		clients = (await socket.emitWithAck('getInfo')).clients;
-		console.log(clients);
 	}
 
 	$effect(() => {
@@ -69,17 +66,28 @@
 			path: '/stream'
 		});
 
-		socket.on('new-stream', () => {
-			console.log('new-stream');
+		socket.on('connect', async () => {
+			console.log('Connected to server');
+			await createDevice();
+			await socket.emitWithAck('join', { room: batch, name: 'admin' });
 			startConsuming();
 		});
+		// Listen for messages
+		socket.on('userJoined', (data) => {
+			startConsuming();
+			console.log(`${data.name} has joined the room.`);
+		});
 
-		(async () => {
-			await createDevice();
-			// await startProducing();
-			setTimeout(startConsuming, 1000);
-			setTimeout(startConsuming, 1000);
-		})();
+		socket.on('userLeft', (data) => {
+			startConsuming();
+			console.log(`${data.name} has left the room.`);
+		});
+
+		socket.on('new-stream', (data) => {
+			startConsuming();
+			console.log(`${data.name} started a new stream: ${data.kind}`);
+		});
+
 		return () => {
 			socket.disconnect();
 		};
@@ -98,27 +106,24 @@
 	</div>
 	<div class="join flex-none">
 		<a class="btn btn-secondary join-item" href="/exam/live"> Kembali daftar Stream </a>
-		<button class="btn btn-primary join-item" onclick={startConsuming}>
-			Refresh Remote Stream
+		<button class="btn btn-primary join-item" onclick={startConsuming} aria-label="Refresh Stream">
+			<iconify-icon icon="bx:refresh" class="text-xl"> </iconify-icon>
 		</button>
 	</div>
 </div>
 
 <div class="p-5">
-	<!-- <button onclick={startConsuming} class="btn">Receive Video</button> -->
-	<!-- <button onclick={getInfo} class="btn">Get INFO</button> -->
-
 	<div>
 		<h2 class="text-lg">Remote Streams</h2>
 		<!-- {JSON.stringify(remoteStreams, null, 2)} -->
-		<div class="grid grid-cols-3 gap-5">
-			{#each Object.entries(remoteStreams) as [key]}
+		<div class="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+			{#each Object.entries(remoteStreams) as [key, { name }]}
 				<div class="card rounded-xl border">
 					<!-- svelte-ignore a11y_media_has_caption -->
 					<video bind:this={remoteVideoStreams[key]} autoplay playsinline class="rounded-xl"
 					></video>
 					<!-- <div>{key}</div> -->
-					<div class="text-center">{clients[key]?.email}</div>
+					<div class="text-center">{name}</div>
 				</div>
 			{/each}
 		</div>

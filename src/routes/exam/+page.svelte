@@ -1,5 +1,5 @@
 <script lang="ts">
-	let batch = $state(`Batch_${Math.round(Math.random() * 100)}`);
+	let batch = $state(`Batch_01`);
 	let email = $state(`user_${Math.round(Math.random() * 100)}@example.com`);
 </script>
 

@@ -81,19 +81,22 @@
 			path: '/stream'
 		});
 
-		socket.on('connect', () => {
+		socket.emit('join', { room: batch, name: email });
+		socket.on('connect', async () => {
 			console.log('Connected to server');
-			socket.emit('join', { batch, email });
+			await createDevice();
+			await startProducing();
 			examActive = true;
 			setTimeout(() => {
 				loading = false;
 			}, 1000);
 		});
-
-		(async () => {
-			await createDevice();
+		socket.on('disconnect', async () => {
+			console.log('Disconnected from server');
+			examActive = false;
 			await startProducing();
-		})();
+		});
+
 		return () => {
 			socket.disconnect();
 		};
@@ -108,13 +111,14 @@
 	</div>
 {/if}
 
-<div class="fixed right-0 bottom-0 left-0 w-60">
+<div class="fixed right-0 bottom-0 left-0 w-100">
 	<div class="mx-auto flex w-full max-w-7xl grow items-end gap-5 p-5">
 		<!-- svelte-ignore a11y_media_has_caption -->
-		<video bind:this={localVideo} autoplay playsinline class="rounded-xl border"></video>
+		<video bind:this={localVideo} autoplay playsinline class="bg-base-200 rounded-xl border"
+		></video>
 	</div>
 </div>
-<div class="navbar bg-base-100 sticky top-0 z-10 shadow-sm">
+<div class="navbar bg-base-100 fixed top-0 z-10 shadow-sm">
 	<div class="flex-none">
 		<img src="/favicon.png" class="w-15" alt="logo" />
 	</div>
@@ -145,7 +149,7 @@
 	</div>
 {/if}
 {#if examActive}
-	<div class="mx-auto flex w-full max-w-7xl grow gap-5 p-5">
+	<div class="mx-auto mt-10 flex w-full max-w-7xl grow gap-5 p-5">
 		<div class="flex-grow p-5 text-xl">
 			{#if questionIndex > -1}
 				{#if questions[questionIndex]}

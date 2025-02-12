@@ -12,7 +12,7 @@
 
 	async function getInfo() {
 		console.log('getInfo');
-		batch = (await socket.emitWithAck('getInfo')).batch;
+		batch = (await socket.emitWithAck('getInfo')).rooms;
 		console.log(batch);
 	}
 
@@ -44,14 +44,20 @@
 </div>
 
 <div class="p-5">
-	<h2 class="text-xl">Available Live Stream</h2>
-	<ul class="menu">
+	<!-- <h2 class="text-xl">Available Live Stream</h2> -->
+	<div class="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
 		{#each batch as batchName}
-			<li>
-				<a href={`/exam/live/preview?batch=${batchName}`} class="btn btn-primary">
-					{batchName}
-				</a>
-			</li>
+			<div class="card card-dash bg-base-100">
+				<div class="card-body">
+					<h2 class="card-title">{batchName}</h2>
+					<p>Ujian tentang Lorem Ipsum</p>
+					<div class="card-actions justify-end">
+						<a href={`/exam/live/preview?batch=${batchName}`} class="btn btn-secondary btn-wide"
+							>Preview</a
+						>
+					</div>
+				</div>
+			</div>
 		{/each}
-	</ul>
+	</div>
 </div>

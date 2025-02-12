@@ -6,3 +6,5 @@ dayjs.prototype.time = function (format = 'HH:mm:ss') {
   return this.format(format);
 };
 export const d = dayjs
+
+export const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
