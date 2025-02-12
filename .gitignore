@@ -24,6 +24,8 @@ Thumbs.db
 # Vite
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+nohup.out
+pocketbase
 
 # Paraglide
 src/lib/paraglide
