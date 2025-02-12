@@ -4,8 +4,8 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "serve": "pm2 start web/server.js --name my-app --node-args='-r dotenv/config'",
-    "serve:base": "pm2 start \"./pocketbase serve --http 0.0.0.0:8090 \" --name pocketbase",
+    "serve": "pm2 start web/server.js --name my-app --node-args='-r dotenv/config' --watch",
+    "serve:base": "pm2 start 'cd base && ./pocketbase serve --http 0.0.0.0:8090' --name pocketbase",
     "dev": "vite dev",
     "dev:base": "cd base && pocketbase serve",
     "build": "vite build",
