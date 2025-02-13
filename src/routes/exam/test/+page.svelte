@@ -8,12 +8,13 @@
 
 	let loading = $state(true);
 	let localStream = $state() as MediaStream;
-	let localVideo = $state() as HTMLVideoElement;
+	let localVideo: HTMLVideoElement | undefined = $state();
 
 	let examActive = $state(false);
 	let socket: Socket;
 	let device: mediasoupClient.Device;
 	let producerTransport: mediasoupClient.types.Transport;
+	let producers = $state<mediasoupClient.types.Producer[]>([]);
 
 	let batch = page.url.searchParams.get('batch');
 	let email = page.url.searchParams.get('email');
@@ -24,82 +25,79 @@
 	let endTime = $state(startTime.add(duration, 'minute'));
 
 	let remainingTime = $derived(Math.max(0, Math.round(endTime.diff(timer, 'seconds'))));
-	function formatTime(seconds: number) {
-		const minutes = Math.floor(seconds / 60);
-		const secs = seconds % 60;
-		return `${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-	}
+	let formatTime = (s: number) =>
+		`${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
 
 	let questionIndex = $state(0);
-	let questions = $state(shuffleQuestionsAndOptions(questionsData));
-	function shuffleArray<T>(array: T[]): T[] {
-		return array
-			.map((item) => ({ item, sort: Math.random() }))
-			.sort((a, b) => a.sort - b.sort)
-			.map(({ item }) => item);
+	let questions = $state(shuffle(questionsData));
+
+	function shuffle<T>(arr: T[]): T[] {
+		return arr
+			.map((v) => ({ v, r: Math.random() }))
+			.sort((a, b) => a.r - b.r)
+			.map(({ v }) => v);
 	}
 
-	function shuffleQuestionsAndOptions(questions: any[]) {
-		return shuffleArray(questions).map((q) => ({
-			...q,
-			options: shuffleArray(q.options)
-		}));
-	}
 	async function createDevice() {
 		device = new mediasoupClient.Device();
-		const routerRtpCapabilities = await socket.emitWithAck('getRouterRtpCapabilities');
-		await device.load({ routerRtpCapabilities });
+		await device.load({
+			routerRtpCapabilities: await socket.emitWithAck('getRouterRtpCapabilities')
+		});
 
 		const producerInfo = await socket.emitWithAck('createTransport');
 		producerTransport = device.createSendTransport(producerInfo);
-		producerTransport.on('connect', ({ dtlsParameters }, callback) => {
-			socket.emit('connectTransport', { id: producerTransport.id, dtlsParameters }, callback);
-		});
 
-		producerTransport.on('produce', async ({ kind, rtpParameters }, callback) => {
-			socket.emit('produce', { id: producerTransport.id, kind, rtpParameters }, callback);
+		producerTransport.on('connect', ({ dtlsParameters }, callback) =>
+			socket.emit('connectTransport', { id: producerTransport.id, dtlsParameters }, callback)
+		);
+		producerTransport.on('produce', async ({ kind, rtpParameters }, callback) =>
+			socket.emit('produce', { id: producerTransport.id, kind, rtpParameters }, callback)
+		);
+		producerTransport.on('connectionstatechange', (state) => {
+			console.log('Transport state:', state);
+			if (state === 'connected') startProducing();
+			if (state === 'failed' || state === 'disconnected') startProducing();
 		});
 	}
 
 	async function startProducing() {
-		console.log('startProducing');
+		console.log('Starting producer', d().format('HH:mm:ss'));
+		if (!producerTransport) return console.warn('No transport');
+
 		localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
-		localVideo.srcObject = localStream;
+		if (localVideo) localVideo.srcObject = localStream;
+
 		localStream.getTracks().forEach(async (track) => {
-			producerTransport?.produce({ track });
+			if (producers.some((p) => p.track === track)) return;
+
+			const producer = await producerTransport.produce({
+				track,
+				encodings: [{ maxBitrate: 100_000, scaleResolutionDownBy: 1 }]
+			});
+			producers.push(producer);
+			producer.on('trackended', producer.close);
+			producer.on('transportclose', producer.close);
 		});
 	}
 
 	$effect(() => {
-		setInterval(() => {
-			timer = d();
-		}, 1000);
+		setInterval(() => (timer = d()), 1000);
 	});
 
 	$effect(() => {
-		socket = io(PUBLIC_SOCKET_URL, {
-			path: '/stream'
-		});
+		socket = io(PUBLIC_SOCKET_URL, { path: '/stream' });
 
 		socket.emit('join', { room: batch, name: email });
 		socket.on('connect', async () => {
-			console.log('Connected to server');
+			console.log('Connected:', d().format('HH:mm:ss'));
 			await createDevice();
 			await startProducing();
 			examActive = true;
-			setTimeout(() => {
-				loading = false;
-			}, 1000);
+			setTimeout(() => (loading = false), 1000);
 		});
-		socket.on('disconnect', async () => {
-			console.log('Disconnected from server');
-			examActive = false;
-			await startProducing();
-		});
+		socket.on('disconnect', () => (examActive = false));
 
-		return () => {
-			socket.disconnect();
-		};
+		return () => socket.disconnect();
 	});
 </script>
 
@@ -137,6 +135,7 @@
 			{formatTime(remainingTime)}
 		</div>
 		<button class="btn btn-primary"> Selesai </button>
+		<button onclick={startProducing} class="btn">Start Produce</button>
 	</div>
 </div>
 {#if !localStream}

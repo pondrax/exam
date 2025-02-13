@@ -20,7 +20,14 @@ async function initMediasoup() {
   worker = await createWorker();
   router = await worker.createRouter({
     mediaCodecs: [
-      { kind: "video", mimeType: "video/vp8", clockRate: 90000 },
+      {
+        kind: "video",
+        mimeType: "video/vp8",
+        clockRate: 90000,
+        parameters: {
+          'x-google-start-bitrate': 1000
+        }
+      },
       { kind: "audio", mimeType: "audio/opus", clockRate: 48000, channels: 2 },
     ],
   });
@@ -50,7 +57,7 @@ io.on("connection", async (socket) => {
     socket.emit('joinedRoom', { room, name });
 
     // Optionally, broadcast to the room that a new user has joined
-    io.to(room).emit('userJoined', { userId: socket.id, name });
+    io.to(room).emit('userJoined', { id: socket.id, name });
   });
 
   // Handle disconnection
@@ -58,7 +65,7 @@ io.on("connection", async (socket) => {
     const { room, name } = clients[socket.id];
     if (room) {
       // Broadcast to the room that the user has left
-      io.to(room).emit('userLeft', { userId: socket.id, name });
+      io.to(room).emit('userLeft', { id: socket.id, name });
     }
     console.log("Client disconnected:", socket.id, clients[socket.id].name);
     delete clients[socket.id];
@@ -73,7 +80,9 @@ io.on("connection", async (socket) => {
       listenInfos: [{ ip: process.env.LISTEN_IP, announcedAddress: process.env.ANNOUNCED_ADDRESS }],
       enableUdp: true,
       enableTcp: false,
+      initialAvailableOutgoingBitrate: 1000_000,
     });
+    transport.setMaxIncomingBitrate(1000_000)
 
     callback({
       id: transport.id,
@@ -98,6 +107,7 @@ io.on("connection", async (socket) => {
   });
 
   socket.on("produce", async ({ id, kind, rtpParameters }, callback) => {
+    console.log('produce', kind, id)
     const transport = clients[socket.id].transports[id];
     if (!transport) return callback({});
     const producer = await transport.produce({ kind, rtpParameters });
