@@ -1,67 +1,71 @@
 @import 'tailwindcss';
 
 @plugin 'daisyui' {
-  themes: corporate --default, business --prefersdark, cupcake;
+	themes:
+		corporate --default,
+		business --prefersdark,
+		cupcake;
 }
 
-.app-background{
-  @apply bg-base-200;
-  background-image: url(/bg-light.png);
+.app-background {
+	@apply bg-base-200;
+	background-image: url(/bg-light.png);
 }
 
-[data-theme="business"] .app-background{
-  background: url(/bg-dark.png);
+[data-theme='business'] .app-background {
+	background: url(/bg-dark.png);
 }
 
-.table{
-  tbody{
-    tr{
-      &[data-sticky]{
-        @apply sticky top-10 bg-base-100 z-1 shadow col-span-3;
-        td,th{
-          @apply bg-base-100;
-        }
-      }
-    }
-  }
-  [data-label]{
-    @apply w-fit;
-  }
+.table {
+	tbody {
+		tr {
+			&[data-sticky] {
+				@apply bg-base-100 sticky top-10 z-1 col-span-3 shadow;
+				td,
+				th {
+					@apply bg-base-100;
+				}
+			}
+		}
+	}
+	[data-label] {
+		@apply w-fit;
+	}
 }
 
 .table-grid {
-  thead {
-    tr {
-      @apply bg-transparent border-0;
-      th {
-        @apply p-0;
-        label {
-          @apply btn btn-sm flex-row-reverse px-5;
-        }
-        &:not(:first-child) {
-          @apply hidden;
-        }
-      }
-    }
-  }
-  tbody {
-    @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 my-4;
-    tr {
-      @apply block border border-base-300 rounded-box shadow-md p-4;
-      &[data-sticky] {
-        @apply top-0 flex;
-      }
-    }
-    td,
-    th {
-      @apply block p-2 w-full break-words;
-    }
-    td:last-child {
-      @apply mb-0;
-    }
-  }
-  [data-key]::before {
-    @apply min-w-10 mr-2 inline-flex;
-    content: attr(data-key);
-  }
+	thead {
+		tr {
+			@apply border-0 bg-transparent;
+			th {
+				@apply p-0;
+				label {
+					@apply btn btn-sm flex-row-reverse px-5;
+				}
+				&:not(:first-child) {
+					@apply hidden;
+				}
+			}
+		}
+	}
+	tbody {
+		@apply my-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3;
+		tr {
+			@apply border-base-300 rounded-box block border p-4 shadow-md;
+			&[data-sticky] {
+				@apply top-0 flex;
+			}
+		}
+		td,
+		th {
+			@apply block w-full p-2 break-words;
+		}
+		td:last-child {
+			@apply mb-0;
+		}
+	}
+	[data-key]::before {
+		@apply mr-2 inline-flex min-w-10;
+		content: attr(data-key);
+	}
 }

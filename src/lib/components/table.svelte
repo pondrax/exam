@@ -85,7 +85,51 @@
 		requestAnimationFrame(handleScroll);
 	}
 
+	const BUFFER_ROWS = 1; // Add extra buffer rows for smoother scrolling
+
 	function handleScroll() {
+		if (!viewport) return;
+		const { scrollTop } = viewport;
+		const old_start = start;
+
+		if (query.grid) {
+			const rowHeight = averageHeight;
+			const scrollRow = Math.floor(scrollTop / rowHeight);
+			start = Math.max(scrollRow - 1, 0) * itemsPerRow;
+			end = Math.min(
+				(scrollRow + Math.ceil(viewportHeight / rowHeight) + BUFFER_ROWS) * itemsPerRow,
+				items.length
+			);
+			top = Math.max(scrollRow - 1, 0) * rowHeight;
+			const remainingItems = items.length - end;
+			const remainingRows = Math.ceil(remainingItems / itemsPerRow);
+			bottom = Math.max(remainingRows * rowHeight + BUFFER_ROWS * rowHeight, 0); // Extra padding
+		} else {
+			let y = 0;
+			let i = 0;
+			while (i < items.length && y + (height_map[i] || averageHeight) <= scrollTop) {
+				y += height_map[i] || averageHeight;
+				i++;
+			}
+			start = i;
+			top = y;
+
+			while (i < items.length && y <= scrollTop + viewportHeight) {
+				y += height_map[i] || averageHeight;
+				i++;
+			}
+			end = i;
+			bottom = Math.max((items.length - end) * averageHeight + BUFFER_ROWS * averageHeight, 0);
+		}
+
+		if (start < old_start) {
+			requestAnimationFrame(() => {
+				viewport.scrollTop = scrollTop;
+			});
+		}
+	}
+
+	function handleScrollX() {
 		// console.log(averageHeight);
 		if (!viewport) return;
 		const { scrollTop } = viewport;

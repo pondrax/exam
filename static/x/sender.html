@@ -1,39 +1,40 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>WebRTC Video Sender</title>
+	</head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WebRTC Video Sender</title>
-</head>
+	<body>
+		<h2>Video Sender</h2>
+		<video id="localVideo" autoplay muted></video>
 
-<body>
-  <h2>Video Sender</h2>
-  <video id="localVideo" autoplay muted></video>
+		<script type="module">
+			import Peer from 'https://cdn.jsdelivr.net/npm/simple-peer@9.11.1/+esm';
 
-  <script type="module">
-    import Peer from 'https://cdn.jsdelivr.net/npm/simple-peer@9.11.1/+esm';
+			const ws = new WebSocket('ws://localhost:8080');
+			const video = document.getElementById('localVideo');
 
-    const ws = new WebSocket('ws://localhost:8080');
-    const video = document.getElementById('localVideo');
+			navigator.mediaDevices
+				.getUserMedia({ video: true, audio: true })
+				.then((stream) => {
+					video.srcObject = stream;
 
-    navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(stream => {
-      video.srcObject = stream;
+					const peer = new Peer({ initiator: true, trickle: false, stream });
 
-      const peer = new Peer({ initiator: true, trickle: false, stream });
+					peer.on('signal', (data) => {
+						ws.send(JSON.stringify({ type: 'signal', data }));
+					});
 
-      peer.on('signal', data => {
-        ws.send(JSON.stringify({ type: 'signal', data }));
-      });
-
-      ws.onmessage = (event) => {
-        const message = JSON.parse(event.data);
-        if (message.type === 'signal') {
-          peer.signal(message.data);
-        }
-      };
-    }).catch(error => console.error('Error accessing media devices:', error));
-  </script>
-</body>
-
+					ws.onmessage = (event) => {
+						const message = JSON.parse(event.data);
+						if (message.type === 'signal') {
+							peer.signal(message.data);
+						}
+					};
+				})
+				.catch((error) => console.error('Error accessing media devices:', error));
+		</script>
+	</body>
 </html>

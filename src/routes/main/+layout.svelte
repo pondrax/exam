@@ -12,27 +12,28 @@
 		{ href: '/main', text: 'Dashboard', icon: 'bxs:dashboard' },
 		null,
 		{ text: 'Menu Utama' },
-		{ href: '/main/posts', text: 'Berita', icon: 'bx:news' },
-		{ href: '/main', text: 'Halaman', icon: 'bx:file' },
-		{ href: '/main', text: 'Lowongan', icon: 'bx:spreadsheet' },
-		{ href: '/main', text: 'Agenda', icon: 'bx:notepad' },
-		{ href: '/main', text: 'Galeri', icon: 'bx:image' },
+		{ href: '/main/menu/posts', text: 'Berita', icon: 'bx:news' },
+		{ href: '/main/menu/pages', text: 'Halaman', icon: 'bx:file' },
+		{ href: '/main/menu/agenda', text: 'Agenda', icon: 'bx:notepad' },
+		{ href: '/main/menu/gallery', text: 'Galeri', icon: 'bx:image' },
 		// { href: '/main/helpdesk', text: 'Helpdesk', icon: 'bx:chat' },
 		null,
-		{ text: 'Manajemen Pendaftaran' },
-		{ href: '/main', text: 'Overview', icon: 'bx:news' },
-		{ href: '/main/applicants', text: 'Pendaftar', icon: 'bx:news' },
+		{ text: 'Manajemen Lowongan' },
+		{ href: '/main/vacancies', text: 'Overview', icon: 'bx:news' },
+		{ href: '/main/vacancies/list', text: 'Daftar Lowongan', icon: 'bx:news' },
+		{ href: '/main/vacancies/exam', text: 'Daftar Ujian', icon: 'bx:news' },
+		{ href: '/main/vacancies/applicants', text: 'Daftar Pelamar', icon: 'bx:news' },
 		null,
 		{ text: 'Manajemen Pertanyaan' },
-		{ href: '/main', text: 'Overview', icon: 'bx:news' },
-		{ href: '/main', text: 'Kategori', icon: 'bx:news' },
-		{ href: '/main', text: 'Daftar Pertanyaan', icon: 'bx:news' },
+		{ href: '/main/questions', text: 'Overview', icon: 'bx:news' },
+		{ href: '/main/questions/category', text: 'Kategori', icon: 'bx:news' },
+		{ href: '/main/questions/list', text: 'Daftar Pertanyaan', icon: 'bx:news' },
 		null,
 		{ text: 'Manajemen Aplikasi' },
-		{ href: '/main', text: 'Pengguna', icon: 'bx:user' },
-		{ href: '/main', text: 'Hak Akses', icon: 'bx:award' },
+		{ href: '/main/settings/users', text: 'Pengguna', icon: 'bx:user' },
+		{ href: '/main/settings/roles', text: 'Hak Akses', icon: 'bx:award' },
 		{ href: PUBLIC_API_URL + '/_', text: 'Database', icon: 'bx:data', target: '_blank' },
-		{ href: '/main', text: 'Pengaturan', icon: 'bx:cog' }
+		{ href: '/main/settings/config', text: 'Pengaturan', icon: 'bx:cog' }
 	];
 	async function init() {
 		const isMainUser = pb.authStore.isValid && pb.authStore.record?.collectionName === 'users';
@@ -89,7 +90,7 @@
 		<div class="drawer-content min-h-screen p-2">
 			<!-- Page content here -->
 			<div class="app-background flex h-full flex-col gap-2 rounded-xl p-5 shadow-xl">
-				<div class="sticky left-0 right-7 flex lg:absolute">
+				<div class="sticky right-7 left-0 flex lg:absolute">
 					<label for="sidebar" class="btn drawer-button lg:hidden">
 						<iconify-icon icon="bx-menu" class="text-xl"></iconify-icon>
 					</label>

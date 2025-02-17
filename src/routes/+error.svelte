@@ -10,7 +10,7 @@
 			|
 			{page.error?.message}
 		</div>
-		<div class="my-5 mb--10 text-center">
+		<div class="mb--10 my-5 text-center">
 			<a href="/" class="btn btn-primary btn-sm"> Kembali ke Beranda</a>
 		</div>
 	</div>

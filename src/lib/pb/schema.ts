@@ -1,3 +1,5 @@
+declare const uniqueIdentifier: unique symbol
+
 export interface Mfas {
     /**
      * |                     |                |
@@ -396,6 +398,17 @@ export interface Users {
      */
     avatar: string
     /**
+     * |                |                    |
+     * | -------------- | ------------------ |
+     * | type           | `relation(single)` |
+     * | hidden         | `false`            |
+     * | collectionId   | `pbc_2105053228`   |
+     * | collectionName | `roles`            |
+     * | cascadeDelete  | `false`            |
+     * | required       | `false`            |
+     */
+    role: string
+    /**
      * |          |             |
      * | -------- | ----------- |
      * | type     | `autodate`  |
@@ -582,7 +595,7 @@ export interface Templates {
     updated: string
 }
 
-export interface Streams {
+export interface Posts {
     /**
      * |                     |                |
      * | ------------------- | -------------- |
@@ -602,7 +615,392 @@ export interface Streams {
      * | hidden   | `false` |
      * | required | `false` |
      */
-    email: string
+    title: string
+    /**
+     * |             |          |
+     * | ----------- | -------- |
+     * | type        | `editor` |
+     * | hidden      | `false`  |
+     * | convertURLs | `false`  |
+     * | required    | `false`  |
+     */
+    content: string
+    /**
+     * |          |         |
+     * | -------- | ------- |
+     * | type     | `text`  |
+     * | hidden   | `false` |
+     * | required | `false` |
+     */
+    slug: string
+    /**
+     * |           |                |
+     * | --------- | -------------- |
+     * | type      | `file(single)` |
+     * | hidden    | `false`        |
+     * | protected | `false`        |
+     * | required  | `false`        |
+     */
+    media: string
+    /**
+     * |          |                  |
+     * | -------- | ---------------- |
+     * | type     | `select(single)` |
+     * | hidden   | `false`          |
+     * | required | `false`          |
+     */
+    status: 'draft' | 'published' | 'archive'
+    /**
+     * |          |         |
+     * | -------- | ------- |
+     * | type     | `date`  |
+     * | hidden   | `false` |
+     * | required | `false` |
+     */
+    schedule: string
+    /**
+     * |          |         |
+     * | -------- | ------- |
+     * | type     | `text`  |
+     * | hidden   | `false` |
+     * | required | `false` |
+     */
+    tags: string
+    /**
+     * |                |                    |
+     * | -------------- | ------------------ |
+     * | type           | `relation(single)` |
+     * | hidden         | `false`            |
+     * | collectionId   | `_pb_users_auth_`  |
+     * | collectionName | `users`            |
+     * | cascadeDelete  | `false`            |
+     * | required       | `false`            |
+     */
+    user: string
+    /**
+     * |          |             |
+     * | -------- | ----------- |
+     * | type     | `autodate`  |
+     * | hidden   | `false`     |
+     * | onCreate | `true`      |
+     * | onUpdate | `false`     |
+     */
+    created: string
+    /**
+     * |          |             |
+     * | -------- | ----------- |
+     * | type     | `autodate`  |
+     * | hidden   | `false`     |
+     * | onCreate | `true`      |
+     * | onUpdate | `true`      |
+     */
+    updated: string
+}
+
+export interface Pages {
+    /**
+     * |                     |                |
+     * | ------------------- | -------------- |
+     * | type                | `text`         |
+     * | hidden              | `false`        |
+     * | min                 | `15`           |
+     * | max                 | `15`           |
+     * | pattern             | `^[a-z0-9]+$`  |
+     * | autogeneratePattern | `[a-z0-9]{15}` |
+     * | required            | `true`         |
+     */
+    id: string
+    /**
+     * |          |         |
+     * | -------- | ------- |
+     * | type     | `text`  |
+     * | hidden   | `false` |
+     * | required | `false` |
+     */
+    title: string
+    /**
+     * |             |          |
+     * | ----------- | -------- |
+     * | type        | `editor` |
+     * | hidden      | `false`  |
+     * | convertURLs | `false`  |
+     * | required    | `false`  |
+     */
+    content: string
+    /**
+     * |          |         |
+     * | -------- | ------- |
+     * | type     | `text`  |
+     * | hidden   | `false` |
+     * | required | `false` |
+     */
+    slug: string
+    /**
+     * |           |                |
+     * | --------- | -------------- |
+     * | type      | `file(single)` |
+     * | hidden    | `false`        |
+     * | protected | `false`        |
+     * | required  | `false`        |
+     */
+    media: string
+    /**
+     * |          |                  |
+     * | -------- | ---------------- |
+     * | type     | `select(single)` |
+     * | hidden   | `false`          |
+     * | required | `false`          |
+     */
+    status: 'draft' | 'published' | 'archive'
+    /**
+     * |          |         |
+     * | -------- | ------- |
+     * | type     | `date`  |
+     * | hidden   | `false` |
+     * | required | `false` |
+     */
+    schedule: string
+    /**
+     * |          |         |
+     * | -------- | ------- |
+     * | type     | `text`  |
+     * | hidden   | `false` |
+     * | required | `false` |
+     */
+    tags: string
+    /**
+     * |                |                    |
+     * | -------------- | ------------------ |
+     * | type           | `relation(single)` |
+     * | hidden         | `false`            |
+     * | collectionId   | `_pb_users_auth_`  |
+     * | collectionName | `users`            |
+     * | cascadeDelete  | `false`            |
+     * | required       | `false`            |
+     */
+    user: string
+    /**
+     * |          |             |
+     * | -------- | ----------- |
+     * | type     | `autodate`  |
+     * | hidden   | `false`     |
+     * | onCreate | `true`      |
+     * | onUpdate | `false`     |
+     */
+    created: string
+    /**
+     * |          |             |
+     * | -------- | ----------- |
+     * | type     | `autodate`  |
+     * | hidden   | `false`     |
+     * | onCreate | `true`      |
+     * | onUpdate | `true`      |
+     */
+    updated: string
+    
+	/**
+	 * This is a unique identifier to help TypeScript differentiate this interface from others sharing the same properties.
+	 * Refer to https://github.com/satohshi/pocketbase-ts#dealing-with-tables-with-exactly-the-same-properties for more information.
+	 */
+	readonly [uniqueIdentifier]: unique symbol
+
+}
+
+export interface Agenda {
+    /**
+     * |                     |                |
+     * | ------------------- | -------------- |
+     * | type                | `text`         |
+     * | hidden              | `false`        |
+     * | min                 | `15`           |
+     * | max                 | `15`           |
+     * | pattern             | `^[a-z0-9]+$`  |
+     * | autogeneratePattern | `[a-z0-9]{15}` |
+     * | required            | `true`         |
+     */
+    id: string
+    /**
+     * |          |         |
+     * | -------- | ------- |
+     * | type     | `text`  |
+     * | hidden   | `false` |
+     * | required | `false` |
+     */
+    title: string
+    /**
+     * |             |          |
+     * | ----------- | -------- |
+     * | type        | `editor` |
+     * | hidden      | `false`  |
+     * | convertURLs | `false`  |
+     * | required    | `false`  |
+     */
+    description: string
+    /**
+     * |           |                |
+     * | --------- | -------------- |
+     * | type      | `file(single)` |
+     * | hidden    | `false`        |
+     * | protected | `false`        |
+     * | required  | `false`        |
+     */
+    media: string
+    /**
+     * |          |                  |
+     * | -------- | ---------------- |
+     * | type     | `select(single)` |
+     * | hidden   | `false`          |
+     * | required | `false`          |
+     */
+    status: 'scheduled' | 'completed' | 'canceled'
+    /**
+     * |          |         |
+     * | -------- | ------- |
+     * | type     | `date`  |
+     * | hidden   | `false` |
+     * | required | `false` |
+     */
+    schedule: string
+    /**
+     * |          |         |
+     * | -------- | ------- |
+     * | type     | `text`  |
+     * | hidden   | `false` |
+     * | required | `false` |
+     */
+    location: string
+    /**
+     * |          |         |
+     * | -------- | ------- |
+     * | type     | `date`  |
+     * | hidden   | `false` |
+     * | required | `false` |
+     */
+    start: string
+    /**
+     * |          |         |
+     * | -------- | ------- |
+     * | type     | `date`  |
+     * | hidden   | `false` |
+     * | required | `false` |
+     */
+    end: string
+    /**
+     * |          |             |
+     * | -------- | ----------- |
+     * | type     | `autodate`  |
+     * | hidden   | `false`     |
+     * | onCreate | `true`      |
+     * | onUpdate | `false`     |
+     */
+    created: string
+    /**
+     * |          |             |
+     * | -------- | ----------- |
+     * | type     | `autodate`  |
+     * | hidden   | `false`     |
+     * | onCreate | `true`      |
+     * | onUpdate | `true`      |
+     */
+    updated: string
+}
+
+export interface Roles {
+    /**
+     * |                     |                |
+     * | ------------------- | -------------- |
+     * | type                | `text`         |
+     * | hidden              | `false`        |
+     * | min                 | `15`           |
+     * | max                 | `15`           |
+     * | pattern             | `^[a-z0-9]+$`  |
+     * | autogeneratePattern | `[a-z0-9]{15}` |
+     * | required            | `true`         |
+     */
+    id: string
+    /**
+     * |          |         |
+     * | -------- | ------- |
+     * | type     | `text`  |
+     * | hidden   | `false` |
+     * | required | `false` |
+     */
+    name: string
+    /**
+     * |             |          |
+     * | ----------- | -------- |
+     * | type        | `editor` |
+     * | hidden      | `false`  |
+     * | convertURLs | `false`  |
+     * | required    | `false`  |
+     */
+    description: string
+    /**
+     * |          |         |
+     * | -------- | ------- |
+     * | type     | `json`  |
+     * | hidden   | `false` |
+     * | required | `false` |
+     */
+    permissions: any
+    /**
+     * |          |                  |
+     * | -------- | ---------------- |
+     * | type     | `select(single)` |
+     * | hidden   | `false`          |
+     * | required | `false`          |
+     */
+    status: 'active' | 'inactive'
+    /**
+     * |          |             |
+     * | -------- | ----------- |
+     * | type     | `autodate`  |
+     * | hidden   | `false`     |
+     * | onCreate | `true`      |
+     * | onUpdate | `false`     |
+     */
+    created: string
+    /**
+     * |          |             |
+     * | -------- | ----------- |
+     * | type     | `autodate`  |
+     * | hidden   | `false`     |
+     * | onCreate | `true`      |
+     * | onUpdate | `true`      |
+     */
+    updated: string
+}
+
+export interface Vacancies {
+    /**
+     * |                     |                |
+     * | ------------------- | -------------- |
+     * | type                | `text`         |
+     * | hidden              | `false`        |
+     * | min                 | `15`           |
+     * | max                 | `15`           |
+     * | pattern             | `^[a-z0-9]+$`  |
+     * | autogeneratePattern | `[a-z0-9]{15}` |
+     * | required            | `true`         |
+     */
+    id: string
+    /**
+     * |          |         |
+     * | -------- | ------- |
+     * | type     | `text`  |
+     * | hidden   | `false` |
+     * | required | `false` |
+     */
+    title: string
+    /**
+     * |             |          |
+     * | ----------- | -------- |
+     * | type        | `editor` |
+     * | hidden      | `false`  |
+     * | convertURLs | `false`  |
+     * | required    | `false`  |
+     */
+    description: string
     /**
      * |          |         |
      * | -------- | ------- |
@@ -618,16 +1016,181 @@ export interface Streams {
      * | hidden   | `false` |
      * | required | `false` |
      */
-    audioData: string
+    location: string
     /**
-     * |             |          |
-     * | ----------- | -------- |
-     * | type        | `editor` |
-     * | hidden      | `false`  |
-     * | convertURLs | `false`  |
-     * | required    | `false`  |
+     * |          |                  |
+     * | -------- | ---------------- |
+     * | type     | `select(single)` |
+     * | hidden   | `false`          |
+     * | required | `false`          |
      */
-    imageData: string
+    status: 'open' | 'closed' | 'pending'
+    /**
+     * |          |             |
+     * | -------- | ----------- |
+     * | type     | `autodate`  |
+     * | hidden   | `false`     |
+     * | onCreate | `true`      |
+     * | onUpdate | `false`     |
+     */
+    created: string
+    /**
+     * |          |             |
+     * | -------- | ----------- |
+     * | type     | `autodate`  |
+     * | hidden   | `false`     |
+     * | onCreate | `true`      |
+     * | onUpdate | `true`      |
+     */
+    updated: string
+}
+
+export interface Questions {
+    /**
+     * |                     |                |
+     * | ------------------- | -------------- |
+     * | type                | `text`         |
+     * | hidden              | `false`        |
+     * | min                 | `15`           |
+     * | max                 | `15`           |
+     * | pattern             | `^[a-z0-9]+$`  |
+     * | autogeneratePattern | `[a-z0-9]{15}` |
+     * | required            | `true`         |
+     */
+    id: string
+    /**
+     * |          |         |
+     * | -------- | ------- |
+     * | type     | `text`  |
+     * | hidden   | `false` |
+     * | required | `false` |
+     */
+    question: string
+    /**
+     * |          |         |
+     * | -------- | ------- |
+     * | type     | `json`  |
+     * | hidden   | `false` |
+     * | required | `false` |
+     */
+    options: any
+    /**
+     * |          |         |
+     * | -------- | ------- |
+     * | type     | `json`  |
+     * | hidden   | `false` |
+     * | required | `false` |
+     */
+    answer: any
+    /**
+     * |                |                    |
+     * | -------------- | ------------------ |
+     * | type           | `relation(single)` |
+     * | hidden         | `false`            |
+     * | collectionId   | `pbc_3610134426`   |
+     * | collectionName | `templates`        |
+     * | cascadeDelete  | `false`            |
+     * | required       | `false`            |
+     */
+    template: string
+    /**
+     * |          |             |
+     * | -------- | ----------- |
+     * | type     | `autodate`  |
+     * | hidden   | `false`     |
+     * | onCreate | `true`      |
+     * | onUpdate | `false`     |
+     */
+    created: string
+    /**
+     * |          |             |
+     * | -------- | ----------- |
+     * | type     | `autodate`  |
+     * | hidden   | `false`     |
+     * | onCreate | `true`      |
+     * | onUpdate | `true`      |
+     */
+    updated: string
+}
+
+export interface Categories {
+    /**
+     * |                     |                |
+     * | ------------------- | -------------- |
+     * | type                | `text`         |
+     * | hidden              | `false`        |
+     * | min                 | `15`           |
+     * | max                 | `15`           |
+     * | pattern             | `^[a-z0-9]+$`  |
+     * | autogeneratePattern | `[a-z0-9]{15}` |
+     * | required            | `true`         |
+     */
+    id: string
+    /**
+     * |          |         |
+     * | -------- | ------- |
+     * | type     | `text`  |
+     * | hidden   | `false` |
+     * | required | `false` |
+     */
+    name: string
+    /**
+     * |          |         |
+     * | -------- | ------- |
+     * | type     | `text`  |
+     * | hidden   | `false` |
+     * | required | `false` |
+     */
+    reference: string
+    /**
+     * |          |             |
+     * | -------- | ----------- |
+     * | type     | `autodate`  |
+     * | hidden   | `false`     |
+     * | onCreate | `true`      |
+     * | onUpdate | `false`     |
+     */
+    created: string
+    /**
+     * |          |             |
+     * | -------- | ----------- |
+     * | type     | `autodate`  |
+     * | hidden   | `false`     |
+     * | onCreate | `true`      |
+     * | onUpdate | `true`      |
+     */
+    updated: string
+}
+
+export interface Settings {
+    /**
+     * |                     |                |
+     * | ------------------- | -------------- |
+     * | type                | `text`         |
+     * | hidden              | `false`        |
+     * | min                 | `15`           |
+     * | max                 | `15`           |
+     * | pattern             | `^[a-z0-9]+$`  |
+     * | autogeneratePattern | `[a-z0-9]{15}` |
+     * | required            | `true`         |
+     */
+    id: string
+    /**
+     * |          |         |
+     * | -------- | ------- |
+     * | type     | `text`  |
+     * | hidden   | `false` |
+     * | required | `false` |
+     */
+    key: string
+    /**
+     * |          |         |
+     * | -------- | ------- |
+     * | type     | `text`  |
+     * | hidden   | `false` |
+     * | required | `false` |
+     */
+    value: string
     /**
      * |          |             |
      * | -------- | ----------- |
@@ -674,14 +1237,55 @@ export type Schema = {
     }
     users: {
         type: Users
+        relations: {
+            role?: Roles
+            // posts_via_user?: Posts[]
+            // pages_via_user?: Pages[]
+        }
+    }
+    roles: {
+        type: Roles
+        relations: {
+            // users_via_role?: Users[]
+        }
     }
     applicants: {
         type: Applicants
     }
     templates: {
         type: Templates
+        relations: {
+            // questions_via_template?: Questions[]
+        }
     }
-    streams: {
-        type: Streams
+    posts: {
+        type: Posts
+        relations: {
+            user?: Users
+        }
+    }
+    pages: {
+        type: Pages
+        relations: {
+            user?: Users
+        }
+    }
+    agenda: {
+        type: Agenda
+    }
+    vacancies: {
+        type: Vacancies
+    }
+    questions: {
+        type: Questions
+        relations: {
+            template?: Templates
+        }
+    }
+    categories: {
+        type: Categories
+    }
+    settings: {
+        type: Settings
     }
 }

@@ -1,40 +1,38 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>WebRTC Video Receiver</title>
+	</head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WebRTC Video Receiver</title>
-</head>
+	<body>
+		<h2>Video Receiver</h2>
+		<video id="remoteVideo" autoplay></video>
 
-<body>
-  <h2>Video Receiver</h2>
-  <video id="remoteVideo" autoplay></video>
+		<script type="module">
+			import Peer from 'https://cdn.jsdelivr.net/npm/simple-peer@9.11.1/+esm';
 
-  <script type="module">
-    import Peer from 'https://cdn.jsdelivr.net/npm/simple-peer@9.11.1/+esm';
+			const ws = new WebSocket('ws://localhost:8080');
+			const remoteVideo = document.getElementById('remoteVideo');
 
-    const ws = new WebSocket('ws://localhost:8080');
-    const remoteVideo = document.getElementById('remoteVideo');
+			const peer = new Peer({ initiator: false, trickle: false });
 
-    const peer = new Peer({ initiator: false, trickle: false });
+			peer.on('signal', (data) => {
+				ws.send(JSON.stringify({ type: 'signal', data }));
+			});
 
-    peer.on('signal', data => {
-      ws.send(JSON.stringify({ type: 'signal', data }));
-    });
+			peer.on('stream', (stream) => {
+				console.log('Received remote stream');
+				remoteVideo.srcObject = stream;
+			});
 
-    peer.on('stream', (stream) => {
-      console.log('Received remote stream');
-      remoteVideo.srcObject = stream;
-    });
-
-    ws.onmessage = (event) => {
-      const message = JSON.parse(event.data);
-      if (message.type === 'signal') {
-        peer.signal(message.data);
-      }
-    };
-  </script>
-</body>
-
+			ws.onmessage = (event) => {
+				const message = JSON.parse(event.data);
+				if (message.type === 'signal') {
+					peer.signal(message.data);
+				}
+			};
+		</script>
+	</body>
 </html>

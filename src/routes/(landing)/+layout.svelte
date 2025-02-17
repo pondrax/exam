@@ -53,7 +53,7 @@
 			<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 			<div tabindex="0" class="collapse">
 				<div class="collapse-title min-h-fit font-semibold">{item.title}</div>
-				<div class="collapse-content max-h-40 overflow-y-auto whitespace-pre-wrap text-xs">
+				<div class="collapse-content max-h-40 overflow-y-auto text-xs whitespace-pre-wrap">
 					{item.message}
 				</div>
 			</div>
@@ -67,7 +67,7 @@
 		</div>
 	{/snippet}
 
-	<div class="fixed bottom-5 right-5 z-50">
+	<div class="fixed right-5 bottom-5 z-50">
 		<div class="not-hover:stack stack-top flex w-80 flex-col gap-3">
 			{#each UI.alert as item}
 				{@render alert(item)}

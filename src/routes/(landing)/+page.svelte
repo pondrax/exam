@@ -62,6 +62,7 @@
 				<img
 					src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
 					class="max-w-sm rounded-lg shadow-2xl"
+					alt="imagex"
 				/>
 				<div>
 					<h1 class="text-5xl font-bold">Box Office News!</h1>
@@ -143,22 +144,22 @@
 	</aside>
 	<nav>
 		<h6 class="footer-title">Services</h6>
-		<a class="link link-hover">Branding</a>
-		<a class="link link-hover">Design</a>
-		<a class="link link-hover">Marketing</a>
-		<a class="link link-hover">Advertisement</a>
+		<a href="/" class="link link-hover">Branding</a>
+		<a href="/" class="link link-hover">Design</a>
+		<a href="/" class="link link-hover">Marketing</a>
+		<a href="/" class="link link-hover">Advertisement</a>
 	</nav>
 	<nav>
 		<h6 class="footer-title">Company</h6>
-		<a class="link link-hover">About us</a>
-		<a class="link link-hover">Contact</a>
-		<a class="link link-hover">Jobs</a>
-		<a class="link link-hover">Press kit</a>
+		<a href="/" class="link link-hover">About us</a>
+		<a href="/" class="link link-hover">Contact</a>
+		<a href="/" class="link link-hover">Jobs</a>
+		<a href="/" class="link link-hover">Press kit</a>
 	</nav>
 	<nav>
 		<h6 class="footer-title">Legal</h6>
-		<a class="link link-hover">Terms of use</a>
-		<a class="link link-hover">Privacy policy</a>
-		<a class="link link-hover">Cookie policy</a>
+		<a href="/" class="link link-hover">Terms of use</a>
+		<a href="/" class="link link-hover">Privacy policy</a>
+		<a href="/" class="link link-hover">Cookie policy</a>
 	</nav>
 </footer>
