@@ -25,14 +25,15 @@
 		{ href: '/main/vacancies/applicants', text: 'Daftar Pelamar', icon: 'bx:news' },
 		null,
 		{ text: 'Manajemen Pertanyaan' },
-		{ href: '/main/questions', text: 'Overview', icon: 'bx:news' },
+		// { href: '/main/questions', text: 'Overview', icon: 'bx:news' },
+		{ href: '/main/questions/template', text: 'Template', icon: 'bx:news' },
 		{ href: '/main/questions/category', text: 'Kategori', icon: 'bx:news' },
 		{ href: '/main/questions/list', text: 'Daftar Pertanyaan', icon: 'bx:news' },
 		null,
 		{ text: 'Manajemen Aplikasi' },
 		{ href: '/main/settings/users', text: 'Pengguna', icon: 'bx:user' },
 		{ href: '/main/settings/roles', text: 'Hak Akses', icon: 'bx:award' },
-		{ href: PUBLIC_API_URL + '/_', text: 'Database', icon: 'bx:data', target: '_blank' },
+		{ href: PUBLIC_API_URL + '/_/', text: 'Database', icon: 'bx:data', target: '_blank' },
 		{ href: '/main/settings/config', text: 'Pengaturan', icon: 'bx:cog' }
 	];
 	async function init() {

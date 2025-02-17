@@ -196,7 +196,9 @@
 						<input
 							type="checkbox"
 							class="checkbox"
-							checked={query.selections.length === items.length}
+							checked={query.selections &&
+								query.selections.length > 0 &&
+								query.selections.length === items.length}
 							onchange={() =>
 								(query.selections = query.selections.length === items.length ? [] : items)}
 						/>

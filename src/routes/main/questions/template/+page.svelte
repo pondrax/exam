@@ -4,7 +4,7 @@
 	import { d } from '$lib/utils';
 	import Form from './form.svelte';
 
-	const key = 'questions';
+	const key = 'questionsTemplates';
 
 	type Collections = Awaited<ReturnType<typeof getCollections>>;
 	let collections: Collections | undefined = $state();
@@ -34,13 +34,7 @@
 
 	async function getCollections() {
 		const result = await pb.collection(key).getList(query.page, query.perPage, {
-			filter: query.filter,
-			query: { decrypt: true },
-			expand: [
-				{
-					key: 'category'
-				}
-			]
+			filter: query.filter
 		});
 		return result;
 	}
@@ -82,39 +76,45 @@
 	<Table items={collections?.items || []} bind:query>
 		{#snippet header()}
 			<!-- <th data-key="id">ID</th> -->
-			<th data-key="question">Pertanyaan</th>
+			<th data-key="name">Template</th>
 			<!-- <th data-key="answer">Jawaban</th> -->
-			<th data-key="template">Template</th>
+			<th data-key="stages" style="width: 400px;">Tahapan</th>
+			<th data-key="status">status</th>
 			<th data-key="created">Created</th>
 			<th data-key="updated">Updated</th>
 		{/snippet}
 		{#snippet children(item)}
 			<!-- <td data-key="ID">{item.id}</td> -->
 			<td data-key="question">
-				<details class="collapse-arrow collapse rounded-none">
-					<summary class="collapse-title min-h-fit p-0">{item.question}</summary>
-					<div class="collapse-content p-0 text-sm">
-						<ul class="menu menu-sm gap-1">
-							{#each item.options as opt}
-								{@const answer = item?.answer?.find(({ id }: { id: string }) => id === opt.id)}
-								<li>
-									<button class="border">
-										{answer.point} - {opt.label}
-									</button>
-								</li>
-							{/each}
-						</ul>
-					</div>
-				</details>
+				<div class="font-semibold">{item.name}</div>
+				<div>{item.description}</div>
 			</td>
 			<!-- <td data-key="status">{item.answer}</td> -->
 			<td data-key="template">
-				<button
-					class="btn btn-xs btn-secondary shrink-0"
-					onclick={() => (query.filter = `template.name = '${item.expand?.category.name}' `)}
-				>
-					{item.expand?.category.name}
-				</button>
+				<ul class="menu">
+					{#each item.stages as stage}
+						<li>
+							<div class="font-semibold uppercase">
+								{stage.id}. {stage.name}
+							</div>
+							<ul>
+								{#each stage.related as step}
+									<li>
+										<div class="uppercase">
+											{step.id}
+											{#if step.number}
+												<span class="badge badge-secondary">{step.number}</span>
+											{/if}
+										</div>
+									</li>
+								{/each}
+							</ul>
+						</li>
+					{/each}
+				</ul>
+			</td>
+			<td data-key="status">
+				<span class="badge" class:badge-info={item.status == 'active'}>{item.status}</span>
 			</td>
 			<td data-key="created">{d(item.created).date()}</td>
 			<td data-key="updated">{d(item.updated).date()}</td>

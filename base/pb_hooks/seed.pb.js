@@ -1,68 +1,33 @@
 /// <reference path="../pb_data/types.d.ts" />
 
+
 $app.rootCmd.addCommand(new Command({
   use: "seed",
   run: (cmd, args) => {
     console.log("Seed data")
-    const seeder = (require(`${__hooks}/seed.js`)).seeder;
-    const postsData = require(`${__hooks}/seeds/posts.js`);
-    const pagesData = require(`${__hooks}/seeds/pages.js`);
-    const vacanciesData = require(`${__hooks}/seeds/vacancies.js`);
-    const questionsData = require(`${__hooks}/seeds/questions.js`);
+    const seeder = (require(`${__hooks}/lib/utils.js`)).seeder;
 
-    seeder('posts', postsData, ['user', 'media']);
-    seeder('pages', pagesData, ['user', 'media']);
-    seeder('vacancies', vacanciesData, ['user', 'media']);
-    seeder('questions', questionsData, ['user', 'media'], true, ['id', 'template']);
+    const roles = require(`${__hooks}/seeds/roles.js`);
+    const posts = require(`${__hooks}/seeds/posts.js`);
+    const pages = require(`${__hooks}/seeds/pages.js`);
+    const vacancies = require(`${__hooks}/seeds/vacancies.js`);
+
+    const questionsTemplates = require(`${__hooks}/seeds/questionsTemplates.js`);
+    const questionsCategories = require(`${__hooks}/seeds/questionsCategories.js`);
+    const questions = require(`${__hooks}/seeds/questions.js`);
+
+
+    $app.db()
+      .newQuery("DELETE FROM questions WHERE 1=1")
+      .execute()
+
+    seeder('roles', roles);
+    seeder('posts', posts, ['user', 'media']);
+    seeder('pages', pages, ['user', 'media']);
+    seeder('vacancies', vacancies, ['user', 'media']);
+
+    seeder('questionsTemplates', questionsTemplates);
+    seeder('questionsCategories', questionsCategories);
+    seeder('questions', questions);
   },
 }));
-
-
-// fires only for "questions" records
-onRecordCreate((e) => {
-  const seed = require(`${__hooks}/seed.js`);
-  ['question', 'options', 'answer'].forEach(key => {
-    let value = e.record.get(key);
-    e.record.set(key, seed.encrypt(value));
-  });
-  e.next()
-}, "questions")
-
-// fires only for "questions" records
-onRecordUpdate((e) => {
-  const seed = require(`${__hooks}/seed.js`);
-  ['question', 'options', 'answer'].forEach(key => {
-    let value = e.record.get(key);
-    e.record.set(key, seed.encrypt(value));
-  });
-  e.next()
-}, "questions")
-
-onRecordEnrich((e) => {
-  const seed = require(`${__hooks}/seed.js`);
-  const auth = e.requestInfo.auth;
-  e.app.expandRecord(auth, ['role'], null);
-
-  console.log(JSON.stringify(e.requestInfo.query, null, 2));
-  if (['developer', 'administrator'].includes(auth?.expandedOne('role')?.get('name'))) {
-    e.record.unhide("answer");
-  }
-
-  ['question', 'options', 'answer'].forEach(key => {
-    if (e.requestInfo?.query?.decrypt == 'true') {
-      let value = seed.decrypt(e.record.get(key));
-      e.record.set(key, value)
-    }
-  });
-  // console.log(JSON.stringify(auth.expandedOne('role').get('name')))
-  // console.log(JSON.stringify(e.requestInfo.auth))
-  // console.log(JSON.stringify(e.requestInfo.auth?.expandedOne('role')))
-
-  // add new custom field for registered users
-  // if (e.requestInfo.auth?.collection()?.name == "users") {
-  //     e.record.withCustomData(true) // for security custom props require to be enabled explicitly
-  //     // e.record.set("computedScore", e.record.get("score") * e.requestInfo.auth.get("base"))
-  // }
-
-  e.next()
-}, "questions")

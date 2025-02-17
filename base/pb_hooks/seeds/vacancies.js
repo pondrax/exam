@@ -6,8 +6,6 @@ module.exports = [
     "category": "Engineering",
     "location": "Jakarta, Indonesia",
     "status": "open",
-    "created": "2025-02-17T10:00:00Z",
-    "updated": "2025-02-17T10:00:00Z"
   },
   {
     "id": "xyz987uvw654rst",
@@ -16,8 +14,6 @@ module.exports = [
     "category": "Marketing",
     "location": "Bali, Indonesia",
     "status": "pending",
-    "created": "2025-02-15T09:00:00Z",
-    "updated": "2025-02-15T09:00:00Z"
   },
   {
     "id": "jkl456mno789pqr",
@@ -26,8 +22,6 @@ module.exports = [
     "category": "Design",
     "location": "Surabaya, Indonesia",
     "status": "closed",
-    "created": "2025-02-12T14:00:00Z",
-    "updated": "2025-02-12T14:00:00Z"
   },
   {
     "id": "stu321vwx654yzp",
@@ -36,8 +30,6 @@ module.exports = [
     "category": "Human Resources",
     "location": "Jakarta, Indonesia",
     "status": "open",
-    "created": "2025-02-10T16:30:00Z",
-    "updated": "2025-02-10T16:30:00Z"
   },
   {
     "id": "uvw789xyz123def",
@@ -46,7 +38,5 @@ module.exports = [
     "category": "Data Science",
     "location": "Bandung, Indonesia",
     "status": "open",
-    "created": "2025-02-08T11:15:00Z",
-    "updated": "2025-02-08T11:15:00Z"
   }
 ]

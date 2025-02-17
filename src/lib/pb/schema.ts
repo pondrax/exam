@@ -537,7 +537,7 @@ export interface Applicants {
     updated: string
 }
 
-export interface Templates {
+export interface QuestionsCategories {
     /**
      * |                     |                |
      * | ------------------- | -------------- |
@@ -575,6 +575,14 @@ export interface Templates {
      * | required | `true`           |
      */
     status: 'active' | 'disabled'
+    /**
+     * |          |         |
+     * | -------- | ------- |
+     * | type     | `bool`  |
+     * | hidden   | `false` |
+     * | required | `false` |
+     */
+    protected: boolean
     /**
      * |          |             |
      * | -------- | ----------- |
@@ -1083,16 +1091,16 @@ export interface Questions {
      */
     answer: any
     /**
-     * |                |                    |
-     * | -------------- | ------------------ |
-     * | type           | `relation(single)` |
-     * | hidden         | `false`            |
-     * | collectionId   | `pbc_3610134426`   |
-     * | collectionName | `templates`        |
-     * | cascadeDelete  | `false`            |
-     * | required       | `false`            |
+     * |                |                       |
+     * | -------------- | --------------------- |
+     * | type           | `relation(single)`    |
+     * | hidden         | `false`               |
+     * | collectionId   | `pbc_3610134426`      |
+     * | collectionName | `questionsCategories` |
+     * | cascadeDelete  | `false`               |
+     * | required       | `false`               |
      */
-    template: string
+    category: string
     /**
      * |          |             |
      * | -------- | ----------- |
@@ -1211,6 +1219,80 @@ export interface Settings {
     updated: string
 }
 
+export interface QuestionsTemplates {
+    /**
+     * |                     |                |
+     * | ------------------- | -------------- |
+     * | type                | `text`         |
+     * | hidden              | `false`        |
+     * | min                 | `15`           |
+     * | max                 | `15`           |
+     * | pattern             | `^[a-z0-9]+$`  |
+     * | autogeneratePattern | `[a-z0-9]{15}` |
+     * | required            | `true`         |
+     */
+    id: string
+    /**
+     * |          |         |
+     * | -------- | ------- |
+     * | type     | `text`  |
+     * | hidden   | `false` |
+     * | required | `false` |
+     */
+    name: string
+    /**
+     * |          |         |
+     * | -------- | ------- |
+     * | type     | `json`  |
+     * | hidden   | `false` |
+     * | required | `false` |
+     */
+    stages: any
+    /**
+     * |             |          |
+     * | ----------- | -------- |
+     * | type        | `editor` |
+     * | hidden      | `false`  |
+     * | convertURLs | `false`  |
+     * | required    | `false`  |
+     */
+    description: string
+    /**
+     * |          |                  |
+     * | -------- | ---------------- |
+     * | type     | `select(single)` |
+     * | hidden   | `false`          |
+     * | required | `true`           |
+     */
+    status: 'active' | 'disabled'
+    /**
+     * |          |         |
+     * | -------- | ------- |
+     * | type     | `bool`  |
+     * | hidden   | `false` |
+     * | required | `false` |
+     */
+    protected: boolean
+    /**
+     * |          |             |
+     * | -------- | ----------- |
+     * | type     | `autodate`  |
+     * | hidden   | `false`     |
+     * | onCreate | `true`      |
+     * | onUpdate | `false`     |
+     */
+    created: string
+    /**
+     * |          |             |
+     * | -------- | ----------- |
+     * | type     | `autodate`  |
+     * | hidden   | `false`     |
+     * | onCreate | `true`      |
+     * | onUpdate | `true`      |
+     */
+    updated: string
+}
+
 /**
  * Commented-out back-relations are what will be inferred by pocketbase-ts from the forward relations.
  *
@@ -1252,10 +1334,10 @@ export type Schema = {
     applicants: {
         type: Applicants
     }
-    templates: {
-        type: Templates
+    questionsCategories: {
+        type: QuestionsCategories
         relations: {
-            // questions_via_template?: Questions[]
+            // questions_via_category?: Questions[]
         }
     }
     posts: {
@@ -1279,7 +1361,7 @@ export type Schema = {
     questions: {
         type: Questions
         relations: {
-            template?: Templates
+            category?: QuestionsCategories
         }
     }
     categories: {
@@ -1287,5 +1369,8 @@ export type Schema = {
     }
     settings: {
         type: Settings
+    }
+    questionsTemplates: {
+        type: QuestionsTemplates
     }
 }

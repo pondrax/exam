@@ -16,9 +16,7 @@ module.exports = [
       { "id": "d", "point": 0 },
       { "id": "e", "point": 0 }
     ],
-    "template": "bb8y212tnu57ds5",
-    "created": "2025-02-17T10:00:00Z",
-    "updated": "2025-02-17T10:00:00Z"
+    "category": "test_tiu"
   },
   {
     "id": "xyz987uvw654rst",
@@ -37,9 +35,7 @@ module.exports = [
       { "id": "d", "point": 0 },
       { "id": "e", "point": 0 }
     ],
-    "template": "bb8y212tnu57ds5",
-    "created": "2025-02-16T14:30:00Z",
-    "updated": "2025-02-16T14:30:00Z"
+    "category": "test_tiu"
   },
   {
     "id": "jkl456mno789pqr",
@@ -58,9 +54,7 @@ module.exports = [
       { "id": "d", "point": 0 },
       { "id": "e", "point": 0 }
     ],
-    "template": "bb8y212tnu57ds5",
-    "created": "2025-02-14T09:00:00Z",
-    "updated": "2025-02-14T09:00:00Z"
+    "category": "test_tiu"
   },
   {
     "id": "stu321vwx654yzp",
@@ -79,9 +73,7 @@ module.exports = [
       { "id": "d", "point": 0 },
       { "id": "e", "point": 0 }
     ],
-    "template": "bb8y212tnu57ds5",
-    "created": "2025-02-13T15:00:00Z",
-    "updated": "2025-02-13T15:00:00Z"
+    "category": "test_tiu"
   },
   {
     "id": "uvw789xyz123def",
@@ -100,9 +92,7 @@ module.exports = [
       { "id": "d", "point": 0 },
       { "id": "e", "point": 0 }
     ],
-    "template": "bb8y212tnu57ds5",
-    "created": "2025-02-11T11:30:00Z",
-    "updated": "2025-02-11T11:30:00Z"
+    "category": "test_tiu"
   },
   {
     "id": "opq654rst321abc",
@@ -121,9 +111,7 @@ module.exports = [
       { "id": "d", "point": 0 },
       { "id": "e", "point": 0 }
     ],
-    "template": "bb8y212tnu57ds5",
-    "created": "2025-02-10T10:00:00Z",
-    "updated": "2025-02-10T10:00:00Z"
+    "category": "test_tiu"
   },
   {
     "id": "abc789def123xyz",
@@ -142,9 +130,7 @@ module.exports = [
       { "id": "d", "point": 0 },
       { "id": "e", "point": 0 }
     ],
-    "template": "bb8y212tnu57ds5",
-    "created": "2025-02-09T08:00:00Z",
-    "updated": "2025-02-09T08:00:00Z"
+    "category": "test_tiu"
   },
   {
     "id": "ijk654opq123abc",
@@ -163,9 +149,7 @@ module.exports = [
       { "id": "d", "point": 0 },
       { "id": "e", "point": 0 }
     ],
-    "template": "bb8y212tnu57ds5",
-    "created": "2025-02-08T07:30:00Z",
-    "updated": "2025-02-08T07:30:00Z"
+    "category": "test_tiu"
   },
   {
     "id": "lmn432rst123xyz",
@@ -184,9 +168,7 @@ module.exports = [
       { "id": "d", "point": 0 },
       { "id": "e", "point": 0 }
     ],
-    "template": "bb8y212tnu57ds5",
-    "created": "2025-02-07T11:00:00Z",
-    "updated": "2025-02-07T11:00:00Z"
+    "category": "test_tiu"
   },
   {
     "id": "pqr765uvw123xyz",
@@ -205,9 +187,7 @@ module.exports = [
       { "id": "d", "point": 0 },
       { "id": "e", "point": 0 }
     ],
-    "template": "bb8y212tnu57ds5",
-    "created": "2025-02-06T10:30:00Z",
-    "updated": "2025-02-06T10:30:00Z"
+    "category": "test_tiu"
   },
   {
     "id": "def456stu890wxy",
@@ -226,9 +206,7 @@ module.exports = [
       { "id": "d", "point": 0 },
       { "id": "e", "point": 0 }
     ],
-    "template": "bb8y212tnu57ds5",
-    "created": "2025-02-18T10:00:00Z",
-    "updated": "2025-02-18T10:00:00Z"
+    "category": "test_tiu"
   },
   {
     "id": "xyz123abc789qwe",
@@ -247,9 +225,7 @@ module.exports = [
       { "id": "d", "point": 0 },
       { "id": "e", "point": 0 }
     ],
-    "template": "bb8y212tnu57ds5",
-    "created": "2025-02-17T11:00:00Z",
-    "updated": "2025-02-17T11:00:00Z"
+    "category": "test_tiu"
   },
   {
     "id": "mno789pqr123stu",
@@ -268,9 +244,7 @@ module.exports = [
       { "id": "d", "point": 0 },
       { "id": "e", "point": 0 }
     ],
-    "template": "bb8y212tnu57ds5",
-    "created": "2025-02-16T14:00:00Z",
-    "updated": "2025-02-16T14:00:00Z"
+    "category": "test_tiu"
   },
   {
     "id": "xyz654stu987abc",
@@ -289,9 +263,7 @@ module.exports = [
       { "id": "d", "point": 0 },
       { "id": "e", "point": 0 }
     ],
-    "template": "bb8y212tnu57ds5",
-    "created": "2025-02-15T10:30:00Z",
-    "updated": "2025-02-15T10:30:00Z"
+    "category": "test_tiu"
   },
   {
     "id": "def567abc890xyz",
@@ -310,9 +282,7 @@ module.exports = [
       { "id": "d", "point": 0 },
       { "id": "e", "point": 0 }
     ],
-    "template": "bb8y212tnu57ds5",
-    "created": "2025-02-14T09:45:00Z",
-    "updated": "2025-02-14T09:45:00Z"
+    "category": "test_tiu"
   },
   {
     "id": "ghi654pqr987abc",
@@ -331,8 +301,6 @@ module.exports = [
       { "id": "d", "point": 0 },
       { "id": "e", "point": 0 }
     ],
-    "template": "bb8y212tnu57ds5",
-    "created": "2025-02-13T08:00:00Z",
-    "updated": "2025-02-13T08:00:00Z"
+    "category": "test_tiu"
   }
 ];
