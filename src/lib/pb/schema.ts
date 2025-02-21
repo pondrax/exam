@@ -516,7 +516,23 @@ export interface Applicants {
      * | hidden   | `false` |
      * | required | `false` |
      */
-    birthDate: string
+    birth: string
+    /**
+     * |          |         |
+     * | -------- | ------- |
+     * | type     | `text`  |
+     * | hidden   | `false` |
+     * | required | `false` |
+     */
+    phone: string
+    /**
+     * |          |                  |
+     * | -------- | ---------------- |
+     * | type     | `select(single)` |
+     * | hidden   | `false`          |
+     * | required | `false`          |
+     */
+    gender: 'Laki Laki' | 'Perempuan'
     /**
      * |          |             |
      * | -------- | ----------- |
@@ -814,7 +830,7 @@ export interface Pages {
 
 }
 
-export interface Agenda {
+export interface Galleries {
     /**
      * |                     |                |
      * | ------------------- | -------------- |
@@ -999,6 +1015,14 @@ export interface Vacancies {
      * | hidden   | `false` |
      * | required | `false` |
      */
+    code: string
+    /**
+     * |          |         |
+     * | -------- | ------- |
+     * | type     | `text`  |
+     * | hidden   | `false` |
+     * | required | `false` |
+     */
     title: string
     /**
      * |             |          |
@@ -1025,6 +1049,30 @@ export interface Vacancies {
      * | required | `false` |
      */
     location: string
+    /**
+     * |          |         |
+     * | -------- | ------- |
+     * | type     | `text`  |
+     * | hidden   | `false` |
+     * | required | `false` |
+     */
+    position: string
+    /**
+     * |          |         |
+     * | -------- | ------- |
+     * | type     | `json`  |
+     * | hidden   | `false` |
+     * | required | `false` |
+     */
+    requirements: any
+    /**
+     * |          |                  |
+     * | -------- | ---------------- |
+     * | type     | `select(single)` |
+     * | hidden   | `false`          |
+     * | required | `false`          |
+     */
+    type: 'recruitment' | 'assesment'
     /**
      * |          |                  |
      * | -------- | ---------------- |
@@ -1067,6 +1115,17 @@ export interface Questions {
      */
     id: string
     /**
+     * |                |                       |
+     * | -------------- | --------------------- |
+     * | type           | `relation(single)`    |
+     * | hidden         | `false`               |
+     * | collectionId   | `pbc_3610134426`      |
+     * | collectionName | `questionsCategories` |
+     * | cascadeDelete  | `false`               |
+     * | required       | `false`               |
+     */
+    category: string
+    /**
      * |          |         |
      * | -------- | ------- |
      * | type     | `text`  |
@@ -1091,17 +1150,6 @@ export interface Questions {
      */
     answer: any
     /**
-     * |                |                       |
-     * | -------------- | --------------------- |
-     * | type           | `relation(single)`    |
-     * | hidden         | `false`               |
-     * | collectionId   | `pbc_3610134426`      |
-     * | collectionName | `questionsCategories` |
-     * | cascadeDelete  | `false`               |
-     * | required       | `false`               |
-     */
-    category: string
-    /**
      * |          |             |
      * | -------- | ----------- |
      * | type     | `autodate`  |
@@ -1121,7 +1169,7 @@ export interface Questions {
     updated: string
 }
 
-export interface Categories {
+export interface ReferencesCategories {
     /**
      * |                     |                |
      * | ------------------- | -------------- |
@@ -1143,13 +1191,30 @@ export interface Categories {
      */
     name: string
     /**
+     * |             |          |
+     * | ----------- | -------- |
+     * | type        | `editor` |
+     * | hidden      | `false`  |
+     * | convertURLs | `false`  |
+     * | required    | `false`  |
+     */
+    description: string
+    /**
      * |          |         |
      * | -------- | ------- |
      * | type     | `text`  |
      * | hidden   | `false` |
      * | required | `false` |
      */
-    reference: string
+    category: string
+    /**
+     * |          |                  |
+     * | -------- | ---------------- |
+     * | type     | `select(single)` |
+     * | hidden   | `false`          |
+     * | required | `false`          |
+     */
+    type: 'browser' | 'navigation' | 'percent' | 'point'
     /**
      * |          |             |
      * | -------- | ----------- |
@@ -1170,56 +1235,7 @@ export interface Categories {
     updated: string
 }
 
-export interface Settings {
-    /**
-     * |                     |                |
-     * | ------------------- | -------------- |
-     * | type                | `text`         |
-     * | hidden              | `false`        |
-     * | min                 | `15`           |
-     * | max                 | `15`           |
-     * | pattern             | `^[a-z0-9]+$`  |
-     * | autogeneratePattern | `[a-z0-9]{15}` |
-     * | required            | `true`         |
-     */
-    id: string
-    /**
-     * |          |         |
-     * | -------- | ------- |
-     * | type     | `text`  |
-     * | hidden   | `false` |
-     * | required | `false` |
-     */
-    key: string
-    /**
-     * |          |         |
-     * | -------- | ------- |
-     * | type     | `text`  |
-     * | hidden   | `false` |
-     * | required | `false` |
-     */
-    value: string
-    /**
-     * |          |             |
-     * | -------- | ----------- |
-     * | type     | `autodate`  |
-     * | hidden   | `false`     |
-     * | onCreate | `true`      |
-     * | onUpdate | `false`     |
-     */
-    created: string
-    /**
-     * |          |             |
-     * | -------- | ----------- |
-     * | type     | `autodate`  |
-     * | hidden   | `false`     |
-     * | onCreate | `true`      |
-     * | onUpdate | `true`      |
-     */
-    updated: string
-}
-
-export interface QuestionsTemplates {
+export interface VacanciesTemplates {
     /**
      * |                     |                |
      * | ------------------- | -------------- |
@@ -1293,6 +1309,580 @@ export interface QuestionsTemplates {
     updated: string
 }
 
+export interface Results {
+    /**
+     * |                     |                |
+     * | ------------------- | -------------- |
+     * | type                | `text`         |
+     * | hidden              | `false`        |
+     * | min                 | `15`           |
+     * | max                 | `15`           |
+     * | pattern             | `^[a-z0-9]+$`  |
+     * | autogeneratePattern | `[a-z0-9]{15}` |
+     * | required            | `true`         |
+     */
+    id: string
+    /**
+     * |                |                    |
+     * | -------------- | ------------------ |
+     * | type           | `relation(single)` |
+     * | hidden         | `false`            |
+     * | collectionId   | `pbc_4248681665`   |
+     * | collectionName | `vacancies`        |
+     * | cascadeDelete  | `false`            |
+     * | required       | `false`            |
+     */
+    vacancy: string
+    /**
+     * |                |                       |
+     * | -------------- | --------------------- |
+     * | type           | `relation(single)`    |
+     * | hidden         | `false`               |
+     * | collectionId   | `pbc_3610134426`      |
+     * | collectionName | `questionsCategories` |
+     * | cascadeDelete  | `false`               |
+     * | required       | `false`               |
+     */
+    category: string
+    /**
+     * |                |                    |
+     * | -------------- | ------------------ |
+     * | type           | `relation(single)` |
+     * | hidden         | `false`            |
+     * | collectionId   | `pbc_4009210445`   |
+     * | collectionName | `questions`        |
+     * | cascadeDelete  | `false`            |
+     * | required       | `false`            |
+     */
+    question: string
+    /**
+     * |          |         |
+     * | -------- | ------- |
+     * | type     | `text`  |
+     * | hidden   | `false` |
+     * | required | `false` |
+     */
+    answer: string
+    /**
+     * |          |          |
+     * | -------- | -------- |
+     * | type     | `number` |
+     * | hidden   | `false`  |
+     * | onlyInt  | `false`  |
+     * | required | `false`  |
+     */
+    score: number
+    /**
+     * |           |                  |
+     * | --------- | ---------------- |
+     * | type      | `file(multiple)` |
+     * | hidden    | `false`          |
+     * | maxSelect | `99`             |
+     * | protected | `false`          |
+     * | required  | `false`          |
+     */
+    file: string[]
+    /**
+     * |                |                    |
+     * | -------------- | ------------------ |
+     * | type           | `relation(single)` |
+     * | hidden         | `false`            |
+     * | collectionId   | `pbc_3081603196`   |
+     * | collectionName | `applied`          |
+     * | cascadeDelete  | `false`            |
+     * | required       | `false`            |
+     */
+    applied: string
+    /**
+     * |          |             |
+     * | -------- | ----------- |
+     * | type     | `autodate`  |
+     * | hidden   | `false`     |
+     * | onCreate | `true`      |
+     * | onUpdate | `false`     |
+     */
+    created: string
+    /**
+     * |          |             |
+     * | -------- | ----------- |
+     * | type     | `autodate`  |
+     * | hidden   | `false`     |
+     * | onCreate | `true`      |
+     * | onUpdate | `true`      |
+     */
+    updated: string
+}
+
+export interface VacanciesSchedule {
+    /**
+     * |                     |                |
+     * | ------------------- | -------------- |
+     * | type                | `text`         |
+     * | hidden              | `false`        |
+     * | min                 | `15`           |
+     * | max                 | `15`           |
+     * | pattern             | `^[a-z0-9]+$`  |
+     * | autogeneratePattern | `[a-z0-9]{15}` |
+     * | required            | `true`         |
+     */
+    id: string
+    /**
+     * |                |                    |
+     * | -------------- | ------------------ |
+     * | type           | `relation(single)` |
+     * | hidden         | `false`            |
+     * | collectionId   | `pbc_4248681665`   |
+     * | collectionName | `vacancies`        |
+     * | cascadeDelete  | `false`            |
+     * | required       | `false`            |
+     */
+    vacancy: string
+    /**
+     * |                |                       |
+     * | -------------- | --------------------- |
+     * | type           | `relation(single)`    |
+     * | hidden         | `false`               |
+     * | collectionId   | `pbc_3610134426`      |
+     * | collectionName | `questionsCategories` |
+     * | cascadeDelete  | `false`               |
+     * | required       | `false`               |
+     */
+    questionCategory: string
+    /**
+     * |          |         |
+     * | -------- | ------- |
+     * | type     | `text`  |
+     * | hidden   | `false` |
+     * | required | `false` |
+     */
+    batch: string
+    /**
+     * |          |          |
+     * | -------- | -------- |
+     * | type     | `number` |
+     * | hidden   | `false`  |
+     * | onlyInt  | `false`  |
+     * | required | `false`  |
+     */
+    questionNumber: number
+    /**
+     * |          |          |
+     * | -------- | -------- |
+     * | type     | `number` |
+     * | hidden   | `false`  |
+     * | onlyInt  | `false`  |
+     * | required | `false`  |
+     */
+    passingGrade: number
+    /**
+     * |          |          |
+     * | -------- | -------- |
+     * | type     | `number` |
+     * | hidden   | `false`  |
+     * | onlyInt  | `false`  |
+     * | required | `false`  |
+     */
+    stage: number
+    /**
+     * |          |                  |
+     * | -------- | ---------------- |
+     * | type     | `select(single)` |
+     * | hidden   | `false`          |
+     * | required | `false`          |
+     */
+    status: 'open' | 'closed'
+    /**
+     * |          |         |
+     * | -------- | ------- |
+     * | type     | `date`  |
+     * | hidden   | `false` |
+     * | required | `false` |
+     */
+    start: string
+    /**
+     * |          |         |
+     * | -------- | ------- |
+     * | type     | `date`  |
+     * | hidden   | `false` |
+     * | required | `false` |
+     */
+    end: string
+    /**
+     * |          |             |
+     * | -------- | ----------- |
+     * | type     | `autodate`  |
+     * | hidden   | `false`     |
+     * | onCreate | `true`      |
+     * | onUpdate | `false`     |
+     */
+    created: string
+    /**
+     * |          |             |
+     * | -------- | ----------- |
+     * | type     | `autodate`  |
+     * | hidden   | `false`     |
+     * | onCreate | `true`      |
+     * | onUpdate | `true`      |
+     */
+    updated: string
+}
+
+export interface References {
+    /**
+     * |                     |                |
+     * | ------------------- | -------------- |
+     * | type                | `text`         |
+     * | hidden              | `false`        |
+     * | min                 | `15`           |
+     * | max                 | `15`           |
+     * | pattern             | `^[a-z0-9]+$`  |
+     * | autogeneratePattern | `[a-z0-9]{15}` |
+     * | required            | `true`         |
+     */
+    id: string
+    /**
+     * |                |                        |
+     * | -------------- | ---------------------- |
+     * | type           | `relation(single)`     |
+     * | hidden         | `false`                |
+     * | collectionId   | `pbc_2769025244`       |
+     * | collectionName | `referencesCategories` |
+     * | cascadeDelete  | `false`                |
+     * | required       | `false`                |
+     */
+    category: string
+    /**
+     * |          |         |
+     * | -------- | ------- |
+     * | type     | `text`  |
+     * | hidden   | `false` |
+     * | required | `false` |
+     */
+    name: string
+    /**
+     * |          |         |
+     * | -------- | ------- |
+     * | type     | `text`  |
+     * | hidden   | `false` |
+     * | required | `false` |
+     */
+    value: string
+    /**
+     * |             |          |
+     * | ----------- | -------- |
+     * | type        | `editor` |
+     * | hidden      | `false`  |
+     * | convertURLs | `false`  |
+     * | required    | `false`  |
+     */
+    description: string
+    /**
+     * |           |                |
+     * | --------- | -------------- |
+     * | type      | `file(single)` |
+     * | hidden    | `false`        |
+     * | protected | `false`        |
+     * | required  | `false`        |
+     */
+    file: string
+    /**
+     * |          |                  |
+     * | -------- | ---------------- |
+     * | type     | `select(single)` |
+     * | hidden   | `false`          |
+     * | required | `false`          |
+     */
+    status: 'active' | 'inactive'
+    /**
+     * |          |          |
+     * | -------- | -------- |
+     * | type     | `number` |
+     * | hidden   | `false`  |
+     * | onlyInt  | `false`  |
+     * | required | `false`  |
+     */
+    order: number
+    /**
+     * |          |             |
+     * | -------- | ----------- |
+     * | type     | `autodate`  |
+     * | hidden   | `false`     |
+     * | onCreate | `true`      |
+     * | onUpdate | `false`     |
+     */
+    created: string
+    /**
+     * |          |             |
+     * | -------- | ----------- |
+     * | type     | `autodate`  |
+     * | hidden   | `false`     |
+     * | onCreate | `true`      |
+     * | onUpdate | `true`      |
+     */
+    updated: string
+}
+
+export interface Companies {
+    /**
+     * |                     |                |
+     * | ------------------- | -------------- |
+     * | type                | `text`         |
+     * | hidden              | `false`        |
+     * | min                 | `15`           |
+     * | max                 | `15`           |
+     * | pattern             | `^[a-z0-9]+$`  |
+     * | autogeneratePattern | `[a-z0-9]{15}` |
+     * | required            | `true`         |
+     */
+    id: string
+    /**
+     * |                |                    |
+     * | -------------- | ------------------ |
+     * | type           | `relation(single)` |
+     * | hidden         | `false`            |
+     * | collectionId   | `_pb_users_auth_`  |
+     * | collectionName | `users`            |
+     * | cascadeDelete  | `false`            |
+     * | required       | `false`            |
+     */
+    user: string
+    /**
+     * |          |         |
+     * | -------- | ------- |
+     * | type     | `text`  |
+     * | hidden   | `false` |
+     * | required | `false` |
+     */
+    name: string
+    /**
+     * |             |          |
+     * | ----------- | -------- |
+     * | type        | `editor` |
+     * | hidden      | `false`  |
+     * | convertURLs | `false`  |
+     * | required    | `false`  |
+     */
+    description: string
+    /**
+     * |           |                |
+     * | --------- | -------------- |
+     * | type      | `file(single)` |
+     * | hidden    | `false`        |
+     * | protected | `false`        |
+     * | required  | `false`        |
+     */
+    media: string
+    /**
+     * |          |                  |
+     * | -------- | ---------------- |
+     * | type     | `select(single)` |
+     * | hidden   | `false`          |
+     * | required | `false`          |
+     */
+    status: 'active' | 'inactive'
+    /**
+     * |          |             |
+     * | -------- | ----------- |
+     * | type     | `autodate`  |
+     * | hidden   | `false`     |
+     * | onCreate | `true`      |
+     * | onUpdate | `false`     |
+     */
+    created: string
+    /**
+     * |          |             |
+     * | -------- | ----------- |
+     * | type     | `autodate`  |
+     * | hidden   | `false`     |
+     * | onCreate | `true`      |
+     * | onUpdate | `true`      |
+     */
+    updated: string
+}
+
+export interface Interviews {
+    /**
+     * |                     |                |
+     * | ------------------- | -------------- |
+     * | type                | `text`         |
+     * | hidden              | `false`        |
+     * | min                 | `15`           |
+     * | max                 | `15`           |
+     * | pattern             | `^[a-z0-9]+$`  |
+     * | autogeneratePattern | `[a-z0-9]{15}` |
+     * | required            | `true`         |
+     */
+    id: string
+    /**
+     * |                |                    |
+     * | -------------- | ------------------ |
+     * | type           | `relation(single)` |
+     * | hidden         | `false`            |
+     * | collectionId   | `pbc_4248681665`   |
+     * | collectionName | `vacancies`        |
+     * | cascadeDelete  | `false`            |
+     * | required       | `false`            |
+     */
+    vacancy: string
+    /**
+     * |          |         |
+     * | -------- | ------- |
+     * | type     | `text`  |
+     * | hidden   | `false` |
+     * | required | `false` |
+     */
+    name: string
+    /**
+     * |             |          |
+     * | ----------- | -------- |
+     * | type        | `editor` |
+     * | hidden      | `false`  |
+     * | convertURLs | `false`  |
+     * | required    | `false`  |
+     */
+    description: string
+    /**
+     * |          |         |
+     * | -------- | ------- |
+     * | type     | `url`   |
+     * | hidden   | `false` |
+     * | required | `false` |
+     */
+    link: string
+    /**
+     * |          |         |
+     * | -------- | ------- |
+     * | type     | `date`  |
+     * | hidden   | `false` |
+     * | required | `false` |
+     */
+    start: string
+    /**
+     * |          |         |
+     * | -------- | ------- |
+     * | type     | `date`  |
+     * | hidden   | `false` |
+     * | required | `false` |
+     */
+    end: string
+    /**
+     * |                |                      |
+     * | -------------- | -------------------- |
+     * | type           | `relation(multiple)` |
+     * | hidden         | `false`              |
+     * | collectionId   | `_pb_users_auth_`    |
+     * | collectionName | `users`              |
+     * | cascadeDelete  | `false`              |
+     * | maxSelect      | `999`                |
+     * | required       | `false`              |
+     */
+    users: string[]
+    /**
+     * |                |                      |
+     * | -------------- | -------------------- |
+     * | type           | `relation(multiple)` |
+     * | hidden         | `false`              |
+     * | collectionId   | `pbc_3231175423`     |
+     * | collectionName | `applicants`         |
+     * | cascadeDelete  | `false`              |
+     * | maxSelect      | `999`                |
+     * | required       | `false`              |
+     */
+    applicants: string[]
+    /**
+     * |          |                  |
+     * | -------- | ---------------- |
+     * | type     | `select(single)` |
+     * | hidden   | `false`          |
+     * | required | `false`          |
+     */
+    status: 'open' | 'closed'
+    /**
+     * |          |             |
+     * | -------- | ----------- |
+     * | type     | `autodate`  |
+     * | hidden   | `false`     |
+     * | onCreate | `true`      |
+     * | onUpdate | `false`     |
+     */
+    created: string
+    /**
+     * |          |             |
+     * | -------- | ----------- |
+     * | type     | `autodate`  |
+     * | hidden   | `false`     |
+     * | onCreate | `true`      |
+     * | onUpdate | `true`      |
+     */
+    updated: string
+}
+
+export interface Applied {
+    /**
+     * |                     |                |
+     * | ------------------- | -------------- |
+     * | type                | `text`         |
+     * | hidden              | `false`        |
+     * | min                 | `15`           |
+     * | max                 | `15`           |
+     * | pattern             | `^[a-z0-9]+$`  |
+     * | autogeneratePattern | `[a-z0-9]{15}` |
+     * | required            | `true`         |
+     */
+    id: string
+    /**
+     * |                |                    |
+     * | -------------- | ------------------ |
+     * | type           | `relation(single)` |
+     * | hidden         | `false`            |
+     * | collectionId   | `pbc_3231175423`   |
+     * | collectionName | `applicants`       |
+     * | cascadeDelete  | `false`            |
+     * | required       | `false`            |
+     */
+    applicant: string
+    /**
+     * |                |                    |
+     * | -------------- | ------------------ |
+     * | type           | `relation(single)` |
+     * | hidden         | `false`            |
+     * | collectionId   | `_pb_users_auth_`  |
+     * | collectionName | `users`            |
+     * | cascadeDelete  | `false`            |
+     * | required       | `false`            |
+     */
+    user: string
+    /**
+     * |                |                    |
+     * | -------------- | ------------------ |
+     * | type           | `relation(single)` |
+     * | hidden         | `false`            |
+     * | collectionId   | `pbc_4248681665`   |
+     * | collectionName | `vacancies`        |
+     * | cascadeDelete  | `false`            |
+     * | required       | `false`            |
+     */
+    vacancy: string
+    /**
+     * |          |             |
+     * | -------- | ----------- |
+     * | type     | `autodate`  |
+     * | hidden   | `false`     |
+     * | onCreate | `true`      |
+     * | onUpdate | `false`     |
+     */
+    created: string
+    /**
+     * |          |             |
+     * | -------- | ----------- |
+     * | type     | `autodate`  |
+     * | hidden   | `false`     |
+     * | onCreate | `true`      |
+     * | onUpdate | `true`      |
+     */
+    updated: string
+}
+
 /**
  * Commented-out back-relations are what will be inferred by pocketbase-ts from the forward relations.
  *
@@ -1323,6 +1913,9 @@ export type Schema = {
             role?: Roles
             // posts_via_user?: Posts[]
             // pages_via_user?: Pages[]
+            // companies_via_user?: Companies[]
+            // interviews_via_users?: Interviews[]
+            // applied_via_user?: Applied[]
         }
     }
     roles: {
@@ -1333,11 +1926,17 @@ export type Schema = {
     }
     applicants: {
         type: Applicants
+        relations: {
+            // interviews_via_applicants?: Interviews[]
+            // applied_via_applicant?: Applied[]
+        }
     }
     questionsCategories: {
         type: QuestionsCategories
         relations: {
             // questions_via_category?: Questions[]
+            // results_via_category?: Results[]
+            // vacanciesSchedule_via_questionCategory?: VacanciesSchedule[]
         }
     }
     posts: {
@@ -1352,25 +1951,77 @@ export type Schema = {
             user?: Users
         }
     }
-    agenda: {
-        type: Agenda
+    galleries: {
+        type: Galleries
     }
     vacancies: {
         type: Vacancies
+        relations: {
+            // results_via_vacancy?: Results[]
+            // vacanciesSchedule_via_vacancy?: VacanciesSchedule[]
+            // interviews_via_vacancy?: Interviews[]
+            // applied_via_vacancy?: Applied[]
+        }
     }
     questions: {
         type: Questions
         relations: {
             category?: QuestionsCategories
+            // results_via_question?: Results[]
         }
     }
-    categories: {
-        type: Categories
+    referencesCategories: {
+        type: ReferencesCategories
+        relations: {
+            // references_via_category?: References[]
+        }
     }
-    settings: {
-        type: Settings
+    vacanciesTemplates: {
+        type: VacanciesTemplates
     }
-    questionsTemplates: {
-        type: QuestionsTemplates
+    results: {
+        type: Results
+        relations: {
+            vacancy?: Vacancies
+            category?: QuestionsCategories
+            question?: Questions
+            applied?: Applied
+        }
+    }
+    applied: {
+        type: Applied
+        relations: {
+            // results_via_applied?: Results[]
+            applicant?: Applicants
+            user?: Users
+            vacancy?: Vacancies
+        }
+    }
+    vacanciesSchedule: {
+        type: VacanciesSchedule
+        relations: {
+            vacancy?: Vacancies
+            questionCategory?: QuestionsCategories
+        }
+    }
+    references: {
+        type: References
+        relations: {
+            category?: ReferencesCategories
+        }
+    }
+    companies: {
+        type: Companies
+        relations: {
+            user?: Users
+        }
+    }
+    interviews: {
+        type: Interviews
+        relations: {
+            vacancy?: Vacancies
+            users?: Users[]
+            applicants?: Applicants[]
+        }
     }
 }

@@ -114,7 +114,13 @@
 				</ul>
 			</td>
 			<td data-key="status">
-				<span class="badge" class:badge-info={item.status == 'active'}>{item.status}</span>
+				<span
+					class="badge badge-sm"
+					class:badge-info={item.status == 'active'}
+					class:badge-warning={item.status != 'active'}
+				>
+					{item.status}
+				</span>
 			</td>
 			<td data-key="created">{d(item.created).date()}</td>
 			<td data-key="updated">{d(item.updated).date()}</td>

@@ -85,7 +85,7 @@
 		requestAnimationFrame(handleScroll);
 	}
 
-	const BUFFER_ROWS = 1; // Add extra buffer rows for smoother scrolling
+	const BUFFER_ROWS = 0; // Add extra buffer rows for smoother scrolling
 
 	function handleScroll() {
 		if (!viewport) return;

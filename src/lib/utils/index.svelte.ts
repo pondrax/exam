@@ -1,5 +1,6 @@
 import { pb } from '$lib/pb';
 type Alert = {
+	id: number;
 	title: string;
 	message: string;
 	type: 'info' | 'error';

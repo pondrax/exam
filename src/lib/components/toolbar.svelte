@@ -25,7 +25,7 @@
 	let columns = $derived(schema.indexes[key]);
 
 	function prevItem() {
-		query.page = Math.max(query.page - 1, 0);
+		query.page = Math.max(query.page - 1, 1);
 	}
 	function nextItem() {
 		query.page = Math.min(query.page + 1, collections?.totalPages || 0);

@@ -4,7 +4,7 @@
 	import { d } from '$lib/utils';
 	import Form from './form.svelte';
 
-	const key = 'templates';
+	const key = 'applicants';
 
 	type Collections = Awaited<ReturnType<typeof getCollections>>;
 	let collections: Collections | undefined = $state();
@@ -50,15 +50,13 @@
 			pb.collection(key).unsubscribe('*');
 		};
 	});
-
-	const testItems = Array.from({ length: 1000_000 }).map((_, i) => i);
 </script>
 
 <Form bind:query bind:forms />
 
 <Toolbar {collections} {key} bind:query>
 	{#snippet header()}
-		<h2 class="text-xl">Pendaftar</h2>
+		<h2 class="text-xl">Daftar Pelamar</h2>
 	{/snippet}
 	{#snippet tool()}
 		<button class="btn btn-sm btn-primary join-item">
@@ -77,18 +75,39 @@
 <div class="bg-base-100 flex flex-grow flex-col overflow-x-auto rounded-xl shadow">
 	<Table items={collections?.items || []} bind:query>
 		{#snippet header()}
-			<th data-key="id">ID</th>
-			<th data-key="name">Name</th>
-			<th data-key="description">Description</th>
-			<th data-key="status">Status</th>
-			<th data-key="status">Created</th>
-			<th data-key="status">Updated</th>
+			<!-- <th data-key="id">ID</th> -->
+			<th data-key="name">Nama</th>
+			<!-- <th data-key="answer">Jawaban</th> -->
+			<th data-key="email">Email</th>
+			<th data-key="nik">NIK</th>
+			<th data-key="address">Alamat</th>
+			<th data-key="status">status</th>
+			<th data-key="created">Created</th>
+			<th data-key="updated">Updated</th>
 		{/snippet}
 		{#snippet children(item)}
-			<td data-key="ID">{item.id}</td>
-			<td data-key="name">{item.name}</td>
-			<td data-key="description">{item.description}</td>
-			<td data-key="status">{item.status}</td>
+			<!-- <td data-key="ID">{item.id}</td> -->
+			<td data-key="question">
+				<div class="font-semibold">{item.name}</div>
+			</td>
+			<td data-key="template">
+				{item.email}
+			</td>
+			<td data-key="template">
+				{item.nik}
+			</td>
+			<td data-key="address">
+				{item.address}
+			</td>
+			<td data-key="status">
+				<span
+					class="badge badge-sm"
+					class:badge-info={item.verified}
+					class:badge-warning={!item.verified}
+				>
+					{item.verified ? 'Verified' : 'Unverified'}
+				</span>
+			</td>
 			<td data-key="created">{d(item.created).date()}</td>
 			<td data-key="updated">{d(item.updated).date()}</td>
 		{/snippet}

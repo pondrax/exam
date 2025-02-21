@@ -135,7 +135,7 @@
 			{formatTime(remainingTime)}
 		</div>
 		<button class="btn btn-primary"> Selesai </button>
-		<button onclick={startProducing} class="btn">Start Produce</button>
+		<!-- <button onclick={startProducing} class="btn">Start Produce</button> -->
 	</div>
 </div>
 {#if !localStream}

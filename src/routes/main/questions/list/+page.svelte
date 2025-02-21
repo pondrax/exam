@@ -62,7 +62,7 @@
 
 <Toolbar {collections} {key} bind:query>
 	{#snippet header()}
-		<h2 class="text-xl">Pertanyaan</h2>
+		<h2 class="text-xl">Daftar Pertanyaan</h2>
 	{/snippet}
 	{#snippet tool()}
 		<button class="btn btn-sm btn-primary join-item">
@@ -95,11 +95,10 @@
 					<summary class="collapse-title min-h-fit p-0">{item.question}</summary>
 					<div class="collapse-content p-0 text-sm">
 						<ul class="menu menu-sm gap-1">
-							{#each item.options as opt}
-								{@const answer = item?.answer?.find(({ id }: { id: string }) => id === opt.id)}
+							{#each Object.entries(item.options) as [key, label]}
 								<li>
 									<button class="border">
-										{answer.point} - {opt.label}
+										{item.answer[key]} - {label}
 									</button>
 								</li>
 							{/each}
@@ -110,10 +109,10 @@
 			<!-- <td data-key="status">{item.answer}</td> -->
 			<td data-key="template">
 				<button
-					class="btn btn-xs btn-secondary shrink-0"
-					onclick={() => (query.filter = `template.name = '${item.expand?.category.name}' `)}
+					class="btn btn-xs btn-secondary whitespace-nowrap"
+					onclick={() => (query.filter = `category.name = '${item.expand?.category?.name}' `)}
 				>
-					{item.expand?.category.name}
+					{item.expand?.category?.name}
 				</button>
 			</td>
 			<td data-key="created">{d(item.created).date()}</td>

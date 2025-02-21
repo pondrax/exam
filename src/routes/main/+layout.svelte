@@ -3,39 +3,11 @@
 	import { goto } from '$app/navigation';
 	import { pb } from '$lib/pb';
 	import { theme, UI } from '$lib/utils/index.svelte';
-	import { PUBLIC_API_URL } from '$env/static/public';
+	import { links } from './routes';
 
-	let { children } = $props();
+	const { children } = $props();
 
 	let loading = $state(true);
-	const links = [
-		{ href: '/main', text: 'Dashboard', icon: 'bxs:dashboard' },
-		null,
-		{ text: 'Menu Utama' },
-		{ href: '/main/menu/posts', text: 'Berita', icon: 'bx:news' },
-		{ href: '/main/menu/pages', text: 'Halaman', icon: 'bx:file' },
-		{ href: '/main/menu/agenda', text: 'Agenda', icon: 'bx:notepad' },
-		{ href: '/main/menu/gallery', text: 'Galeri', icon: 'bx:image' },
-		// { href: '/main/helpdesk', text: 'Helpdesk', icon: 'bx:chat' },
-		null,
-		{ text: 'Manajemen Lowongan' },
-		{ href: '/main/vacancies', text: 'Overview', icon: 'bx:news' },
-		{ href: '/main/vacancies/list', text: 'Daftar Lowongan', icon: 'bx:news' },
-		{ href: '/main/vacancies/exam', text: 'Daftar Ujian', icon: 'bx:news' },
-		{ href: '/main/vacancies/applicants', text: 'Daftar Pelamar', icon: 'bx:news' },
-		null,
-		{ text: 'Manajemen Pertanyaan' },
-		// { href: '/main/questions', text: 'Overview', icon: 'bx:news' },
-		{ href: '/main/questions/template', text: 'Template', icon: 'bx:news' },
-		{ href: '/main/questions/category', text: 'Kategori', icon: 'bx:news' },
-		{ href: '/main/questions/list', text: 'Daftar Pertanyaan', icon: 'bx:news' },
-		null,
-		{ text: 'Manajemen Aplikasi' },
-		{ href: '/main/settings/users', text: 'Pengguna', icon: 'bx:user' },
-		{ href: '/main/settings/roles', text: 'Hak Akses', icon: 'bx:award' },
-		{ href: PUBLIC_API_URL + '/_/', text: 'Database', icon: 'bx:data', target: '_blank' },
-		{ href: '/main/settings/config', text: 'Pengaturan', icon: 'bx:cog' }
-	];
 	async function init() {
 		const isMainUser = pb.authStore.isValid && pb.authStore.record?.collectionName === 'users';
 		UI.user = pb.authStore.record;
@@ -86,11 +58,11 @@
 		<div class="loading loading-spinner" role="status"></div>
 	</div>
 {:else}
-	<div class="drawer lg:drawer-open bg-base-100">
+	<div class="drawer lg:drawer-open app-background">
 		<input id="sidebar" type="checkbox" class="drawer-toggle" />
 		<div class="drawer-content min-h-screen p-2">
 			<!-- Page content here -->
-			<div class="app-background flex h-full flex-col gap-2 rounded-xl p-5 shadow-xl">
+			<div class="bg-base-100 flex h-full flex-col gap-2 rounded-xl p-5 shadow-xl">
 				<div class="sticky right-7 left-0 flex lg:absolute">
 					<label for="sidebar" class="btn drawer-button lg:hidden">
 						<iconify-icon icon="bx-menu" class="text-xl"></iconify-icon>
@@ -114,7 +86,7 @@
 		</div>
 		<div class="drawer-side z-10">
 			<label for="sidebar" aria-label="close sidebar" class="drawer-overlay"></label>
-			<div class="bg-base-100 flex min-h-full flex-col">
+			<div class="app-background flex min-h-full flex-col">
 				<div class="my-3 text-center">
 					<div class="avatar my-3">
 						<div

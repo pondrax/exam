@@ -1,8 +1,5 @@
 <script lang="ts">
-	import { page } from '$app/state';
 	import { io, type Socket } from 'socket.io-client';
-	import * as mediasoupClient from 'mediasoup-client';
-	import { tick } from 'svelte';
 	import { PUBLIC_SOCKET_URL } from '$env/static/public';
 
 	let batch = $state([]);
@@ -52,9 +49,9 @@
 					<h2 class="card-title">{batchName}</h2>
 					<p>Ujian tentang Lorem Ipsum</p>
 					<div class="card-actions justify-end">
-						<a href={`/exam/live/preview?batch=${batchName}`} class="btn btn-secondary btn-wide"
-							>Preview</a
-						>
+						<a href={`/exam/live/preview?batch=${batchName}`} class="btn btn-secondary btn-wide">
+							Preview
+						</a>
 					</div>
 				</div>
 			</div>

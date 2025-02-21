@@ -5,6 +5,9 @@ module.exports = [
     "description": "We are looking for a passionate software engineer to join our team. Responsibilities include developing web applications, maintaining and scaling systems, and working closely with cross-functional teams.",
     "category": "Engineering",
     "location": "Jakarta, Indonesia",
+    "position": "full-time",
+    "requirements": ['S1-Teknik Informatika', 'S1-Sistem Informasi'],
+    "type": "recruitment",
     "status": "open",
   },
   {
@@ -13,6 +16,9 @@ module.exports = [
     "description": "We are looking for a dynamic marketing manager to lead our team. Responsibilities include developing marketing strategies, managing campaigns, and analyzing market trends.",
     "category": "Marketing",
     "location": "Bali, Indonesia",
+    "position": "full-time",
+    "type": "recruitment",
+    "requirements": ['S1-Teknik Informatika', 'S1-Sistem Informasi'],
     "status": "pending",
   },
   {
@@ -21,6 +27,9 @@ module.exports = [
     "description": "Join our team as a UI/UX designer to create user-friendly interfaces and provide design solutions that improve the overall user experience across all platforms.",
     "category": "Design",
     "location": "Surabaya, Indonesia",
+    "position": "full-time",
+    "type": "assessment",
+    "requirements": ['S1-Teknik Informatika', 'S1-Sistem Informasi'],
     "status": "closed",
   },
   {
@@ -29,6 +38,9 @@ module.exports = [
     "description": "We are looking for a detail-oriented HR Assistant to support the HR department with recruitment, employee engagement, and administrative tasks.",
     "category": "Human Resources",
     "location": "Jakarta, Indonesia",
+    "position": "full-time",
+    "type": "recruitment",
+    "requirements": ['S1-Teknik Informatika', 'S1-Sistem Informasi'],
     "status": "open",
   },
   {
@@ -37,6 +49,9 @@ module.exports = [
     "description": "We are looking for a skilled data scientist to analyze and interpret complex data to help guide business decisions. Proficiency in Python, SQL, and machine learning is required.",
     "category": "Data Science",
     "location": "Bandung, Indonesia",
+    "position": "full-time",
+    "type": "assessment",
+    "requirements": ['S1-Teknik Informatika', 'S1-Sistem Informasi'],
     "status": "open",
   }
 ]

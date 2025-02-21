@@ -3,6 +3,7 @@ import { PocketBaseTS } from 'pocketbase-ts';
 import type { Schema as SchemaTS } from './schema';
 import schemaJson from './schema.json';
 import { UI } from '$lib/utils/index.svelte';
+import { d } from '$lib/utils';
 export const schema = schemaJson;
 
 export type Schema = SchemaTS | typeof schemaJson.fields;
@@ -34,47 +35,83 @@ pb.beforeSend = async (url: string, options) => {
 };
 
 pb.afterSend = (response: Response, data) => {
-	// console.log('after', response, data);
+	UI.loading = false;
 	if (response.ok) {
-		if (response.url.indexOf('hidden') > -1) {
-		} else if (
-			Object.keys(data).length > 0 && // Data is object and has keys
-			!data.items && // Data dont have items
-			!Array.isArray(data) // Data is not array
-		) {
-			// console.log(response);
-			// addToast({
-			// 	message: data.message ?? 'Data has been updated'
-			// });
-		} else if (response.url.includes('/records/')) {
-			// console.log('del', response, data);
-			// addToast({
-			// 	message: 'Data has been deleted'
-			// });
-		}
-	} else {
-		const alert = {
-			title: data.message,
-			message: JSON.stringify(data.data, null, 2),
-			type: 'error' as const
-		};
-		UI.alert = [alert, ...UI.alert];
-		UI.validator = data.data;
+		if (response.url.includes('/records/')) {
+			const alert = {
+				id: d().millisecond(),
+				title: 'Data Saved',
+				message: JSON.stringify(data, null, 2),
+				type: 'info' as const
+			};
+			UI.alert = [alert, ...UI.alert];
+			UI.validator = data.data;
 
-		setTimeout(() => {
-			UI.alert = UI.alert.filter((i) => i != alert);
-		}, 3000);
-		// addToast({
-		// 	title: 'Error',
-		// 	message: data.message ?? m.message_error(),
-		// 	type: 'error',
-		// 	time: -1
-		// });
+			setTimeout(() => {
+				// UI.alert = []
+				UI.alert = UI.alert.filter((i) => i.id != alert.id);
+				// $inspect(UI.alert)
+			}, 3000);
+		}
 	}
-	setTimeout(() => {
-		// loading.set(false);
-		UI.loading = false;
-	}, 500);
-	// console.log('after', response, data, loading.get());
+
 	return data;
 };
+
+// pb.afterSend = (response: Response, data) => {
+//   if (response.ok) {
+//     if (response.url.indexOf('hidden') > -1) {
+//     } else if (
+//       Object.keys(data).length > 0 && // Data is object and has keys
+//       !data.items && // Data dont have items
+//       !Array.isArray(data) // Data is not array
+//     ) {
+//       // console.log(response);
+//       // addToast({
+//       // 	message: data.message ?? 'Data has been updated'
+//       // });
+//     } else if (response.url.includes('/records/')) {
+//       // console.log('del', response, data);
+//       // addToast({
+//       // 	message: 'Data has been deleted'
+//       // });
+//       console.log('after', response, data);
+
+//       const alert = {
+//         title: data.message,
+//         message: JSON.stringify(data.data, null, 2),
+//         type: 'info' as const
+//       };
+//       UI.alert = [alert, ...UI.alert];
+//       UI.validator = data.data;
+
+//       setTimeout(() => {
+//         UI.alert = UI.alert.filter((i) => i != alert);
+//       }, 3000);
+//     }
+//   } else {
+//     const alert = {
+//       title: data.message,
+//       message: JSON.stringify(data.data, null, 2),
+//       type: 'error' as const
+//     };
+//     UI.alert = [alert, ...UI.alert];
+//     UI.validator = data.data;
+
+//     setTimeout(() => {
+//       UI.alert = UI.alert.filter((i) => i != alert);
+//     }, 3000);
+//     // addToast({
+//     // 	title: 'Error',
+//     // 	message: data.message ?? m.message_error(),
+//     // 	type: 'error',
+//     // 	time: -1
+//     // });
+//   }
+//   setTimeout(() => {
+//     // loading.set(false);
+//     UI.loading = false;
+//   }, 500);
+//   // console.log('after', response, data, loading.get());
+//   return data;
+// };

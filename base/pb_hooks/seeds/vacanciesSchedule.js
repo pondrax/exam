@@ -1,0 +1,86 @@
+module.exports = [
+  {
+    "id": "abc123def456ghi",
+    "vacancy": "uvw789xyz123def",
+    "questionCategory": "test_administrasi",
+    "start": "2025-02-01T00:00:00Z",
+    "end": "2025-03-01T00:00:00Z",
+    "batch": "Batch 01",
+    "passingGrade": "0",
+    "questionNumber": "0",
+    "stage": "1",
+    "status": "open"
+  },
+  {
+    "id": "fgh123def456ghi",
+    "vacancy": "uvw789xyz123def",
+    "questionCategory": "test_tiu",
+    "start": "2025-02-01T00:00:00Z",
+    "end": "2025-03-01T00:00:00Z",
+    "batch": "Batch 01",
+    "passingGrade": "150",
+    "questionNumber": "40",
+    "stage": "2",
+    "status": "open"
+  },
+  {
+    "id": "ijk123def456ghi",
+    "vacancy": "uvw789xyz123def",
+    "questionCategory": "test_twk",
+    "start": "2025-02-01T00:00:00Z",
+    "end": "2025-03-01T00:00:00Z",
+    "batch": "Batch 01",
+    "passingGrade": "100",
+    "questionNumber": "30",
+    "stage": "2",
+    "status": "open"
+  },
+  {
+    "id": "lmn123def456ghi",
+    "vacancy": "uvw789xyz123def",
+    "questionCategory": "test_tkp",
+    "start": "2025-02-01T00:00:00Z",
+    "end": "2025-03-01T00:00:00Z",
+    "batch": "Batch 01",
+    "passingGrade": "100",
+    "questionNumber": "30",
+    "stage": "2",
+    "status": "open"
+  },
+  {
+    "id": "opq123def456ghi",
+    "vacancy": "uvw789xyz123def",
+    "questionCategory": "test_skb",
+    "start": "2025-02-01T00:00:00Z",
+    "end": "2025-03-01T00:00:00Z",
+    "batch": "Batch 01",
+    "passingGrade": "300",
+    "questionNumber": "100",
+    "stage": "3",
+    "status": "open"
+  },
+  {
+    "id": "rst123def456ghi",
+    "vacancy": "uvw789xyz123def",
+    "questionCategory": "test_wawancara",
+    "start": "2025-02-01T00:00:00Z",
+    "end": "2025-03-01T00:00:00Z",
+    "batch": "Batch 01",
+    "passingGrade": "0",
+    "questionNumber": "0",
+    "stage": "4",
+    "status": "open"
+  },
+  {
+    "id": "vwx123def456ghi",
+    "vacancy": "uvw789xyz123def",
+    "questionCategory": "test_kesehatan",
+    "start": "2025-02-01T00:00:00Z",
+    "end": "2025-03-01T00:00:00Z",
+    "batch": "Batch 01",
+    "passingGrade": "0",
+    "questionNumber": "0",
+    "stage": "5",
+    "status": "open"
+  },
+]

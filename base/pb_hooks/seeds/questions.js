@@ -1,306 +1,871 @@
-module.exports = [
+const administrasi = [
+
+  {
+    'id': 'poiuytrewq09879',
+    "question": "Foto KTP",
+    "options": {
+      "type": "file",
+      "accept": "image/*",
+      "multiple": false,
+      "size": 1000
+    },
+    "answer": "",
+    "category": "test_administrasi"
+  },
+
+  {
+    'id': 'aoiuytrewq09879',
+    "question": "Foto KTP",
+    "options": {
+      "type": "file",
+      "accept": "image/*",
+      "size": 1000
+    },
+    "answer": "",
+    "category": "test_administrasi"
+  },
+];
+
+const tiu = [
+  {
+    'id': 'poiuytrewq09876',
+    "question": "Sinonim kata 'damai' adalah",
+    "options": {
+      "a": "Kacau",
+      "b": "Tenang",
+      "c": "Gaduh",
+      "d": "Riang",
+      "e": "Tentram"
+    },
+    "answer": {
+      "a": 0,
+      "b": 0,
+      "c": 0,
+      "d": 0,
+      "e": 5
+    },
+    "category": "test_tiu"
+  },
+  {
+    'id': 'poiuytrewq09877',
+    "question": "Kata 'kawal' merupakan kata yang berarti",
+    "options": {
+      "a": "Mengawasi",
+      "b": "Mengikuti",
+      "c": "Mengantar",
+      "d": "Menyusul",
+      "e": "Menghampiri"
+    },
+    "answer": {
+      "a": 5,
+      "b": 0,
+      "c": 0,
+      "d": 0,
+      "e": 0
+    },
+    "category": "test_tiu"
+  },
+  {
+    "id": "l1b2l7hngf7ux68",
+    "question": "Berapa hasil dari 3^3 + 2^3?",
+    "options": {
+      "a": "27",
+      "b": "35",
+      "c": "36",
+      "d": "35",
+      "e": "17"
+    },
+    "answer": {
+      "a": 0,
+      "b": 5,
+      "c": 0,
+      "d": 0,
+      "e": 0
+    },
+    "category": "test_tiu"
+  },
+  {
+    "id": "keblujnyaevexf3",
+    "question": "Sebuah mobil menempuh perjalanan 240 km dalam 4 jam. Berapa kecepatan rata-rata mobil tersebut?",
+    "options": {
+      "a": "40 km/jam",
+      "b": "50 km/jam",
+      "c": "60 km/jam",
+      "d": "70 km/jam",
+      "e": "80 km/jam"
+    },
+    "answer": {
+      "a": 0,
+      "b": 0,
+      "c": 5,
+      "d": 0,
+      "e": 0
+    },
+    "category": "test_tiu"
+  },
+  {
+    "id": "bv2z9wolmpoo6cq",
+    "question": "Jika hari ini adalah Jumat, maka 50 hari lagi adalah hari apa?",
+    "options": {
+      "a": "Minggu",
+      "b": "Senin",
+      "c": "Selasa",
+      "d": "Rabu",
+      "e": "Kamis"
+    },
+    "answer": {
+      "a": 0,
+      "b": 0,
+      "c": 0,
+      "d": 0,
+      "e": 5
+    },
+    "category": "test_tiu"
+  },
+  {
+    "id": "nltlyqow6bjzmhq",
+    "question": "Jika sebuah segitiga memiliki sudut 40° dan 70°, berapa besar sudut ketiga?",
+    "options": {
+      "a": "50°",
+      "b": "60°",
+      "c": "70°",
+      "d": "80°",
+      "e": "90°"
+    },
+    "answer": {
+      "a": 0,
+      "b": 5,
+      "c": 0,
+      "d": 0,
+      "e": 0
+    },
+    "category": "test_tiu"
+  },
+  {
+    "id": "5pof3ilm12ek9sg",
+    "question": "Jika hari ini adalah Jumat, maka 50 hari lagi adalah hari apa?",
+    "options": {
+      "a": "Minggu",
+      "b": "Senin",
+      "c": "Selasa",
+      "d": "Rabu",
+      "e": "Kamis"
+    },
+    "answer": {
+      "a": 0,
+      "b": 0,
+      "c": 0,
+      "d": 0,
+      "e": 5
+    },
+    "category": "test_tiu"
+  },
+  {
+    "id": "77yuz5v1bjohxpm",
+    "question": "Jika sebuah segitiga memiliki sudut 40° dan 70°, berapa besar sudut ketiga?",
+    "options": {
+      "a": "50°",
+      "b": "60°",
+      "c": "70°",
+      "d": "80°",
+      "e": "90°"
+    },
+    "answer": {
+      "a": 0,
+      "b": 5,
+      "c": 0,
+      "d": 0,
+      "e": 0
+    },
+    "category": "test_tiu"
+  },
+  {
+    "id": "lcbdbgavpahc1u7",
+    "question": "Jika sebuah toko menjual 120 roti dalam sehari dan setiap pelanggan membeli 4 roti, berapa banyak pelanggan yang datang ke toko itu?",
+    "options": {
+      "a": "20",
+      "b": "25",
+      "c": "30",
+      "d": "35",
+      "e": "40"
+    },
+    "answer": {
+      "a": 0,
+      "b": 0,
+      "c": 5,
+      "d": 0,
+      "e": 0
+    },
+    "category": "test_tiu"
+  },
+  {
+    "id": "u9z0xmyo6wrf9ch",
+    "question": "Sebuah mobil berjalan dengan kecepatan 80 km/jam selama 3 jam. Berapa jarak yang ditempuh mobil tersebut?",
+    "options": {
+      "a": "200 km",
+      "b": "220 km",
+      "c": "240 km",
+      "d": "260 km",
+      "e": "280 km"
+    },
+    "answer": {
+      "a": 0,
+      "b": 0,
+      "c": 5,
+      "d": 0,
+      "e": 0
+    },
+    "category": "test_tiu"
+  },
+  {
+    "id": "xcdar7evykfuu80",
+    "question": "Jika sebuah kereta berjalan sejauh 300 km dalam 5 jam, berapa kecepatan rata-rata kereta tersebut?",
+    "options": {
+      "a": "50 km/jam",
+      "b": "55 km/jam",
+      "c": "60 km/jam",
+      "d": "65 km/jam",
+      "e": "70 km/jam"
+    },
+    "answer": {
+      "a": 0,
+      "b": 0,
+      "c": 5,
+      "d": 0,
+      "e": 0
+    },
+    "category": "test_tiu"
+  },
+  {
+    "id": "uvzbs2qzhl0n3nv",
+    "question": "Jika panjang sebuah persegi panjang adalah 10 cm dan lebarnya 6 cm, berapa luasnya?",
+    "options": {
+      "a": "50 cm²",
+      "b": "55 cm²",
+      "c": "60 cm²",
+      "d": "65 cm²",
+      "e": "70 cm²"
+    },
+    "answer": {
+      "a": 0,
+      "b": 0,
+      "c": 5,
+      "d": 0,
+      "e": 0
+    },
+    "category": "test_tiu"
+  },
+  {
+    "id": "602snjovxjsrgxf",
+    "question": "Jika Andi memiliki 3 kotak pensil dan setiap kotak berisi 12 pensil, berapa total pensil yang dimiliki Andi?",
+    "options": {
+      "a": "24",
+      "b": "30",
+      "c": "32",
+      "d": "36",
+      "e": "40"
+    },
+    "answer": {
+      "a": 0,
+      "b": 0,
+      "c": 0,
+      "d": 5,
+      "e": 0
+    },
+    "category": "test_tiu"
+  },
+  {
+    "id": "yusr84pre0i8p48",
+    "question": "Jika panjang sebuah persegi panjang adalah 10 cm dan lebarnya 6 cm, berapa luasnya?",
+    "options": {
+      "a": "50 cm²",
+      "b": "55 cm²",
+      "c": "60 cm²",
+      "d": "65 cm²",
+      "e": "70 cm²"
+    },
+    "answer": {
+      "a": 0,
+      "b": 0,
+      "c": 5,
+      "d": 0,
+      "e": 0
+    },
+    "category": "test_tiu"
+  },
+  {
+    "id": "tgez6q28kdbnm67",
+    "question": "Sebuah angka dikalikan 7 menghasilkan 84. Berapakah angka tersebut?",
+    "options": {
+      "a": "10",
+      "b": "11",
+      "c": "12",
+      "d": "13",
+      "e": "14"
+    },
+    "answer": {
+      "a": 0,
+      "b": 0,
+      "c": 5,
+      "d": 0,
+      "e": 0
+    },
+    "category": "test_tiu"
+  },
+  {
+    "id": "8vajrdrgwwpbk0e",
+    "question": "Jika sebuah lingkaran memiliki diameter 14 cm, berapa jari-jarinya?",
+    "options": {
+      "a": "5 cm",
+      "b": "6 cm",
+      "c": "7 cm",
+      "d": "8 cm",
+      "e": "9 cm"
+    },
+    "answer": {
+      "a": 0,
+      "b": 0,
+      "c": 5,
+      "d": 0,
+      "e": 0
+    },
+    "category": "test_tiu"
+  },
+  {
+    "id": "xkpgxf3judmo6k9",
+    "question": "Jika terdapat 180 siswa di sekolah dan 40% di antaranya adalah perempuan, berapa jumlah siswa laki-laki?",
+    "options": {
+      "a": "72",
+      "b": "90",
+      "c": "108",
+      "d": "120",
+      "e": "140"
+    },
+    "answer": {
+      "a": 0,
+      "b": 0,
+      "c": 5,
+      "d": 0,
+      "e": 0
+    },
+    "category": "test_tiu"
+  },
+  {
+    "id": "vs7eogbow7nocvn",
+    "question": "Jika Andi memiliki 3 kotak pensil dan setiap kotak berisi 12 pensil, berapa total pensil yang dimiliki Andi?",
+    "options": {
+      "a": "24",
+      "b": "30",
+      "c": "32",
+      "d": "36",
+      "e": "40"
+    },
+    "answer": {
+      "a": 0,
+      "b": 0,
+      "c": 0,
+      "d": 5,
+      "e": 0
+    },
+    "category": "test_tiu"
+  },
+  {
+    "id": "m5bcphil8ambky9",
+    "question": "Sebuah toko menjual 75 kg beras dalam 5 hari. Berapa rata-rata beras yang terjual per hari?",
+    "options": {
+      "a": "10 kg",
+      "b": "12 kg",
+      "c": "15 kg",
+      "d": "18 kg",
+      "e": "20 kg"
+    },
+    "answer": {
+      "a": 0,
+      "b": 0,
+      "c": 5,
+      "d": 0,
+      "e": 0
+    },
+    "category": "test_tiu"
+  },
+  {
+    "id": "qypqhps3pvzd692",
+    "question": "Jika Andi memiliki 3 kotak pensil dan setiap kotak berisi 12 pensil, berapa total pensil yang dimiliki Andi?",
+    "options": {
+      "a": "24",
+      "b": "30",
+      "c": "32",
+      "d": "36",
+      "e": "40"
+    },
+    "answer": {
+      "a": 0,
+      "b": 0,
+      "c": 0,
+      "d": 5,
+      "e": 0
+    },
+    "category": "test_tiu"
+  },
+  {
+    "id": "gsza6r25fpdh1yv",
+    "question": "Jika harga satu lusin pensil adalah Rp24.000, berapa harga per pensil?",
+    "options": {
+      "a": "Rp1.500",
+      "b": "Rp2.000",
+      "c": "Rp2.500",
+      "d": "Rp3.000",
+      "e": "Rp3.500"
+    },
+    "answer": {
+      "a": 0,
+      "b": 5,
+      "c": 0,
+      "d": 0,
+      "e": 0
+    },
+    "category": "test_tiu"
+  },
+  {
+    "id": "1uiyssljoifwvrr",
+    "question": "Berapa hasil dari 7 × 8 + 9?",
+    "options": {
+      "a": "54",
+      "b": "63",
+      "c": "65",
+      "d": "67",
+      "e": "72"
+    },
+    "answer": {
+      "a": 0,
+      "b": 0,
+      "c": 0,
+      "d": 5,
+      "e": 0
+    },
+    "category": "test_tiu"
+  },
+  {
+    "id": "mmcwfl51u9s467v",
+    "question": "Sebuah toko memiliki 120 kg beras. Jika setiap pelanggan membeli 5 kg, berapa banyak pelanggan yang dapat dilayani?",
+    "options": {
+      "a": "20",
+      "b": "22",
+      "c": "24",
+      "d": "25",
+      "e": "30"
+    },
+    "answer": {
+      "a": 0,
+      "b": 0,
+      "c": 0,
+      "d": 5,
+      "e": 0
+    },
+    "category": "test_tiu"
+  },
+  {
+    "id": "p857aue69tac8te",
+    "question": "Jika jumlah tiga bilangan berurutan adalah 90, berapa bilangan terbesar?",
+    "options": {
+      "a": "28",
+      "b": "29",
+      "c": "30",
+      "d": "31",
+      "e": "32"
+    },
+    "answer": {
+      "a": 0,
+      "b": 0,
+      "c": 5,
+      "d": 0,
+      "e": 0
+    },
+    "category": "test_tiu"
+  },
+  {
+    "id": "9lhazbttjhb2i99",
+    "question": "Sebuah tim memiliki 15 pemain. Jika setiap pertandingan membutuhkan 5 pemain, berapa banyak tim yang bisa dibentuk?",
+    "options": {
+      "a": "2",
+      "b": "3",
+      "c": "4",
+      "d": "5",
+      "e": "6"
+    },
+    "answer": {
+      "a": 0,
+      "b": 0,
+      "c": 5,
+      "d": 0,
+      "e": 0
+    },
+    "category": "test_tiu"
+  },
+  {
+    "id": "ka38u15japk5j71",
+    "question": "Sebuah bus memiliki kapasitas 50 penumpang. Jika ada 325 penumpang, berapa kali perjalanan yang harus dilakukan?",
+    "options": {
+      "a": "5",
+      "b": "6",
+      "c": "7",
+      "d": "8",
+      "e": "9"
+    },
+    "answer": {
+      "a": 0,
+      "b": 0,
+      "c": 5,
+      "d": 0,
+      "e": 0
+    },
+    "category": "test_tiu"
+  },
+  {
+    "id": "6u8bqt11ewusecd",
+    "question": "Sebuah toko buku memiliki 450 buku. Jika setiap rak bisa menampung 30 buku, berapa rak yang dibutuhkan?",
+    "options": {
+      "a": "10",
+      "b": "12",
+      "c": "14",
+      "d": "15",
+      "e": "18"
+    },
+    "answer": {
+      "a": 0,
+      "b": 5,
+      "c": 0,
+      "d": 0,
+      "e": 0
+    },
+    "category": "test_tiu"
+  },
+  {
+    "id": "v8pblebct82xek7",
+    "question": "Sebuah toko memiliki 120 kg beras. Jika setiap pelanggan membeli 5 kg, berapa banyak pelanggan yang dapat dilayani?",
+    "options": {
+      "a": "20",
+      "b": "22",
+      "c": "24",
+      "d": "25",
+      "e": "30"
+    },
+    "answer": {
+      "a": 0,
+      "b": 0,
+      "c": 0,
+      "d": 5,
+      "e": 0
+    },
+    "category": "test_tiu"
+  },
+  {
+    "id": "cyxut1hfbnqczke",
+    "question": "Sebuah persegi panjang memiliki panjang 12 cm dan lebar 8 cm. Berapa luasnya?",
+    "options": {
+      "a": "72 cm²",
+      "b": "80 cm²",
+      "c": "84 cm²",
+      "d": "90 cm²",
+      "e": "96 cm²"
+    },
+    "answer": {
+      "a": 0,
+      "b": 0,
+      "c": 0,
+      "d": 0,
+      "e": 5
+    },
+    "category": "test_tiu"
+  },
+  {
+    "id": "3goym1dcw11q1cr",
+    "question": "Sebuah bus memiliki kapasitas 50 penumpang. Jika ada 325 penumpang, berapa kali perjalanan yang harus dilakukan?",
+    "options": {
+      "a": "5",
+      "b": "6",
+      "c": "7",
+      "d": "8",
+      "e": "9"
+    },
+    "answer": {
+      "a": 0,
+      "b": 0,
+      "c": 5,
+      "d": 0,
+      "e": 0
+    },
+    "category": "test_tiu"
+  },
+  {
+    "id": "421wac2uxcprjms",
+    "question": "Sebuah kereta api bergerak dengan kecepatan 90 km/jam. Berapa jarak yang ditempuh dalam 2,5 jam?",
+    "options": {
+      "a": "200 km",
+      "b": "220 km",
+      "c": "225 km",
+      "d": "240 km",
+      "e": "250 km"
+    },
+    "answer": {
+      "a": 0,
+      "b": 0,
+      "c": 5,
+      "d": 0,
+      "e": 0
+    },
+    "category": "test_tiu"
+  },
+  {
+    "id": "9j8qu2bfezmue7o",
+    "question": "Sebuah toko memiliki 120 kg beras. Jika setiap pelanggan membeli 5 kg, berapa banyak pelanggan yang dapat dilayani?",
+    "options": {
+      "a": "20",
+      "b": "22",
+      "c": "24",
+      "d": "25",
+      "e": "30"
+    },
+    "answer": {
+      "a": 0,
+      "b": 0,
+      "c": 0,
+      "d": 5,
+      "e": 0
+    },
+    "category": "test_tiu"
+  }, {
+    "id": "9j8qu2oihjmue7o",
+    "question": "Sebuah toko memiliki 220 kg beras. Jika setiap pelanggan membeli 15 kg, berapa banyak pelanggan yang dapat dilayani?",
+    "options": {
+      "a": "10",
+      "b": "12",
+      "c": "14",
+      "d": "15",
+      "e": "16"
+    },
+    "answer": {
+      "a": 0,
+      "b": 0,
+      "c": 0,
+      "d": 5,
+      "e": 0
+    },
+    "category": "test_tiu"
+  },
+
+
+
+
+
+
+
+
+
+
+];
+
+
+const twk = [
+
+]
+
+const tkp = [
   {
     "id": "abc123def456ghi",
-    "question": "Apa bahasa pemrograman yang paling Anda sukai?",
-    "options": [
-      { "id": "a", "label": "JavaScript" },
-      { "id": "b", "label": "Python" },
-      { "id": "c", "label": "Java" },
-      { "id": "d", "label": "C++" },
-      { "id": "e", "label": "Ruby" }
-    ],
-    "answer": [
-      { "id": "a", "point": 5 },
-      { "id": "b", "point": 0 },
-      { "id": "c", "point": 0 },
-      { "id": "d", "point": 0 },
-      { "id": "e", "point": 0 }
-    ],
-    "category": "test_tiu"
+    "question": "Bagaimana Anda biasanya menghadapi tekanan dalam pekerjaan?",
+    "options": {
+      "a": "Tetap tenang dan mencari solusi yang logis.",
+      "b": "Berdiskusi dengan rekan kerja untuk mencari solusi.",
+      "c": "Merasa cemas tetapi tetap mencoba menyelesaikannya.",
+      "d": "Menghindari masalah dan berharap akan terselesaikan sendiri.",
+      "e": "Mudah stres dan kehilangan motivasi."
+    },
+    "answer": {
+      "a": 5,
+      "b": 4,
+      "c": 3,
+      "d": 2,
+      "e": 1
+    },
+    "category": "test_tkp"
   },
   {
-    "id": "xyz987uvw654rst",
-    "question": "Apakah Anda lebih suka bekerja dari jarak jauh atau di kantor?",
-    "options": [
-      { "id": "a", "label": "Remote" },
-      { "id": "b", "label": "Kantor" },
-      { "id": "c", "label": "Hybrid" },
-      { "id": "d", "label": "Fleksibel" },
-      { "id": "e", "label": "Sementara" }
-    ],
-    "answer": [
-      { "id": "a", "point": 5 },
-      { "id": "b", "point": 0 },
-      { "id": "c", "point": 0 },
-      { "id": "d", "point": 0 },
-      { "id": "e", "point": 0 }
-    ],
-    "category": "test_tiu"
+    "id": "def789ghi012jkl",
+    "question": "Saat bekerja dalam tim, peran apa yang biasanya Anda ambil?",
+    "options": {
+      "a": "Pemimpin yang mengarahkan tim.",
+      "b": "Pendukung yang membantu menyelesaikan tugas.",
+      "c": "Pemikir yang memberikan ide kreatif.",
+      "d": "Pengamat yang menganalisis situasi.",
+      "e": "Independen yang lebih suka bekerja sendiri."
+    },
+    "answer": {
+      "a": 5,
+      "b": 4,
+      "c": 3,
+      "d": 2,
+      "e": 1
+    },
+    "category": "test_tkp"
   },
   {
-    "id": "jkl456mno789pqr",
-    "question": "Sistem operasi apa yang Anda gunakan terutama?",
-    "options": [
-      { "id": "a", "label": "Windows" },
-      { "id": "b", "label": "Mac" },
-      { "id": "c", "label": "Linux" },
-      { "id": "d", "label": "Ubuntu" },
-      { "id": "e", "label": "Lainnya" }
-    ],
-    "answer": [
-      { "id": "a", "point": 0 },
-      { "id": "b", "point": 5 },
-      { "id": "c", "point": 0 },
-      { "id": "d", "point": 0 },
-      { "id": "e", "point": 0 }
-    ],
-    "category": "test_tiu"
+    "id": "ghi345jkl678mno",
+    "question": "Bagaimana cara Anda menghadapi perubahan mendadak dalam pekerjaan?",
+    "options": {
+      "a": "Beradaptasi dengan cepat dan tetap optimis.",
+      "b": "Membutuhkan waktu untuk menyesuaikan diri.",
+      "c": "Mencari bantuan dari rekan kerja.",
+      "d": "Merasa stres dan kesulitan menyesuaikan diri.",
+      "e": "Menolak perubahan dan tetap pada cara lama."
+    },
+    "answer": {
+      "a": 5,
+      "b": 4,
+      "c": 3,
+      "d": 2,
+      "e": 1
+    },
+    "category": "test_tkp"
   },
   {
-    "id": "stu321vwx654yzp",
-    "question": "Apa tingkat pengalaman Anda dengan teknologi cloud?",
-    "options": [
-      { "id": "a", "label": "Pemula" },
-      { "id": "b", "label": "Menengah" },
-      { "id": "c", "label": "Ahli" },
-      { "id": "d", "label": "Tidak ada pengalaman" },
-      { "id": "e", "label": "Lanjutan" }
-    ],
-    "answer": [
-      { "id": "a", "point": 0 },
-      { "id": "b", "point": 0 },
-      { "id": "c", "point": 5 },
-      { "id": "d", "point": 0 },
-      { "id": "e", "point": 0 }
-    ],
-    "category": "test_tiu"
+    "id": "jkl678mno901pqr",
+    "question": "Bagaimana Anda biasanya menghadapi kritik?",
+    "options": {
+      "a": "Menerima dengan terbuka dan belajar darinya.",
+      "b": "Menganalisis kritik sebelum bereaksi.",
+      "c": "Mencoba membela diri.",
+      "d": "Menghindari dan merasa tersinggung.",
+      "e": "Merasa putus asa."
+    },
+    "answer": {
+      "a": 5,
+      "b": 4,
+      "c": 3,
+      "d": 2,
+      "e": 1
+    },
+    "category": "test_tkp"
   },
   {
-    "id": "uvw789xyz123def",
-    "question": "Apakah Anda memiliki pengalaman bekerja dengan API?",
-    "options": [
-      { "id": "a", "label": "Ya" },
-      { "id": "b", "label": "Tidak" },
-      { "id": "c", "label": "Pengalaman Pemula" },
-      { "id": "d", "label": "Pengalaman Lanjutan" },
-      { "id": "e", "label": "Tidak Berminat" }
-    ],
-    "answer": [
-      { "id": "a", "point": 5 },
-      { "id": "b", "point": 0 },
-      { "id": "c", "point": 0 },
-      { "id": "d", "point": 0 },
-      { "id": "e", "point": 0 }
-    ],
-    "category": "test_tiu"
+    "id": "mno901pqr234stu",
+    "question": "Apa yang lebih mencerminkan gaya kerja Anda?",
+    "options": {
+      "a": "Cepat dan efisien.",
+      "b": "Terorganisir dan sistematis.",
+      "c": "Kreatif dan inovatif.",
+      "d": "Hati-hati dan penuh pertimbangan.",
+      "e": "Fleksibel dan spontan."
+    },
+    "answer": {
+      "a": 5,
+      "b": 4,
+      "c": 3,
+      "d": 2,
+      "e": 1
+    },
+    "category": "test_tkp"
   },
   {
-    "id": "opq654rst321abc",
-    "question": "Apakah Anda lebih suka bekerja dengan tim atau secara individu?",
-    "options": [
-      { "id": "a", "label": "Tim" },
-      { "id": "b", "label": "Individu" },
-      { "id": "c", "label": "Kombinasi" },
-      { "id": "d", "label": "Fleksibel" },
-      { "id": "e", "label": "Tidak Tertarik" }
-    ],
-    "answer": [
-      { "id": "a", "point": 5 },
-      { "id": "b", "point": 0 },
-      { "id": "c", "point": 0 },
-      { "id": "d", "point": 0 },
-      { "id": "e", "point": 0 }
-    ],
-    "category": "test_tiu"
+    "id": "stu234vwx567yz",
+    "question": "Bagaimana Anda menangani konflik dengan rekan kerja?",
+    "options": {
+      "a": "Mendiskusikan dengan tenang.",
+      "b": "Menghindari konflik sebisa mungkin.",
+      "c": "Mencari kompromi.",
+      "d": "Menyampaikan pendapat dengan tegas.",
+      "e": "Menyerahkan kepada atasan."
+    },
+    "answer": {
+      "a": 5,
+      "b": 4,
+      "c": 3,
+      "d": 2,
+      "e": 1
+    },
+    "category": "test_tkp"
   },
   {
-    "id": "abc789def123xyz",
-    "question": "Apakah Anda merasa nyaman dengan pekerjaan berbasis deadline?",
-    "options": [
-      { "id": "a", "label": "Sangat Nyaman" },
-      { "id": "b", "label": "Nyaman" },
-      { "id": "c", "label": "Cukup Nyaman" },
-      { "id": "d", "label": "Tidak Nyaman" },
-      { "id": "e", "label": "Sangat Tidak Nyaman" }
-    ],
-    "answer": [
-      { "id": "a", "point": 5 },
-      { "id": "b", "point": 0 },
-      { "id": "c", "point": 0 },
-      { "id": "d", "point": 0 },
-      { "id": "e", "point": 0 }
-    ],
-    "category": "test_tiu"
+    "id": "yz567abc890def",
+    "question": "Apa yang membuat Anda paling termotivasi?",
+    "options": {
+      "a": "Tantangan baru.",
+      "b": "Pujian dan penghargaan.",
+      "c": "Keamanan dan stabilitas.",
+      "d": "Kebebasan dalam bekerja.",
+      "e": "Kerjasama tim."
+    },
+    "answer": {
+      "a": 5,
+      "b": 4,
+      "c": 3,
+      "d": 2,
+      "e": 1
+    },
+    "category": "test_tkp"
   },
   {
-    "id": "ijk654opq123abc",
-    "question": "Apakah Anda suka belajar hal-hal baru?",
-    "options": [
-      { "id": "a", "label": "Sangat Suka" },
-      { "id": "b", "label": "Suka" },
-      { "id": "c", "label": "Cukup Suka" },
-      { "id": "d", "label": "Tidak Suka" },
-      { "id": "e", "label": "Sangat Tidak Suka" }
-    ],
-    "answer": [
-      { "id": "a", "point": 5 },
-      { "id": "b", "point": 0 },
-      { "id": "c", "point": 0 },
-      { "id": "d", "point": 0 },
-      { "id": "e", "point": 0 }
-    ],
-    "category": "test_tiu"
+    "id": "ghi345jkl678stu",
+    "question": "Jika menghadapi kegagalan, apa yang Anda lakukan?",
+    "options": {
+      "a": "Menganalisis kesalahan dan mencoba lagi.",
+      "b": "Mencari dukungan dari orang lain.",
+      "c": "Merasa kecewa tetapi tetap mencoba.",
+      "d": "Menghindari risiko di masa depan.",
+      "e": "Menyerah dan kehilangan motivasi."
+    },
+    "answer": {
+      "a": 5,
+      "b": 4,
+      "c": 3,
+      "d": 2,
+      "e": 1
+    },
+    "category": "test_tkp"
   },
   {
-    "id": "lmn432rst123xyz",
-    "question": "Seberapa penting bagi Anda memiliki keseimbangan kerja-hidup?",
-    "options": [
-      { "id": "a", "label": "Sangat Penting" },
-      { "id": "b", "label": "Penting" },
-      { "id": "c", "label": "Cukup Penting" },
-      { "id": "d", "label": "Tidak Penting" },
-      { "id": "e", "label": "Sangat Tidak Penting" }
-    ],
-    "answer": [
-      { "id": "a", "point": 5 },
-      { "id": "b", "point": 0 },
-      { "id": "c", "point": 0 },
-      { "id": "d", "point": 0 },
-      { "id": "e", "point": 0 }
-    ],
-    "category": "test_tiu"
+    "id": "pqr678stu901vwx",
+    "question": "Saat menghadapi masalah yang kompleks, bagaimana reaksi Anda?",
+    "options": {
+      "a": "Menganalisis dan mencari solusi terbaik.",
+      "b": "Mendiskusikan dengan rekan kerja.",
+      "c": "Mencari bantuan dari orang lain.",
+      "d": "Merasa stres dan cemas.",
+      "e": "Menunda penyelesaian."
+    },
+    "answer": {
+      "a": 5,
+      "b": 4,
+      "c": 3,
+      "d": 2,
+      "e": 1
+    },
+    "category": "test_tkp"
   },
   {
-    "id": "pqr765uvw123xyz",
-    "question": "Apakah Anda tertarik bekerja di bidang teknologi?",
-    "options": [
-      { "id": "a", "label": "Sangat Tertarik" },
-      { "id": "b", "label": "Tertarik" },
-      { "id": "c", "label": "Cukup Tertarik" },
-      { "id": "d", "label": "Tidak Tertarik" },
-      { "id": "e", "label": "Sangat Tidak Tertarik" }
-    ],
-    "answer": [
-      { "id": "a", "point": 5 },
-      { "id": "b", "point": 0 },
-      { "id": "c", "point": 0 },
-      { "id": "d", "point": 0 },
-      { "id": "e", "point": 0 }
-    ],
-    "category": "test_tiu"
-  },
-  {
-    "id": "def456stu890wxy",
-    "question": "Apa pendapat Anda tentang bekerja dengan tim yang lebih besar?",
-    "options": [
-      { "id": "a", "label": "Sangat Menyenangkan" },
-      { "id": "b", "label": "Menyenangkan" },
-      { "id": "c", "label": "Cukup Menyenangkan" },
-      { "id": "d", "label": "Tidak Menyenangkan" },
-      { "id": "e", "label": "Sangat Tidak Menyenangkan" }
-    ],
-    "answer": [
-      { "id": "a", "point": 5 },
-      { "id": "b", "point": 0 },
-      { "id": "c", "point": 0 },
-      { "id": "d", "point": 0 },
-      { "id": "e", "point": 0 }
-    ],
-    "category": "test_tiu"
-  },
-  {
-    "id": "xyz123abc789qwe",
-    "question": "Apakah Anda lebih suka bekerja dalam proyek individu atau kolaboratif?",
-    "options": [
-      { "id": "a", "label": "Individu" },
-      { "id": "b", "label": "Kolaboratif" },
-      { "id": "c", "label": "Keduanya" },
-      { "id": "d", "label": "Tidak Tertarik" },
-      { "id": "e", "label": "Tidak Memilih" }
-    ],
-    "answer": [
-      { "id": "a", "point": 5 },
-      { "id": "b", "point": 0 },
-      { "id": "c", "point": 0 },
-      { "id": "d", "point": 0 },
-      { "id": "e", "point": 0 }
-    ],
-    "category": "test_tiu"
-  },
-  {
-    "id": "mno789pqr123stu",
-    "question": "Apakah Anda merasa nyaman untuk menerima umpan balik konstruktif?",
-    "options": [
-      { "id": "a", "label": "Sangat Nyaman" },
-      { "id": "b", "label": "Nyaman" },
-      { "id": "c", "label": "Cukup Nyaman" },
-      { "id": "d", "label": "Tidak Nyaman" },
-      { "id": "e", "label": "Sangat Tidak Nyaman" }
-    ],
-    "answer": [
-      { "id": "a", "point": 5 },
-      { "id": "b", "point": 0 },
-      { "id": "c", "point": 0 },
-      { "id": "d", "point": 0 },
-      { "id": "e", "point": 0 }
-    ],
-    "category": "test_tiu"
-  },
-  {
-    "id": "xyz654stu987abc",
-    "question": "Seberapa sering Anda berkolaborasi dengan rekan kerja di luar tim Anda?",
-    "options": [
-      { "id": "a", "label": "Setiap Hari" },
-      { "id": "b", "label": "Mingguan" },
-      { "id": "c", "label": "Kadang-kadang" },
-      { "id": "d", "label": "Jarang" },
-      { "id": "e", "label": "Tidak Pernah" }
-    ],
-    "answer": [
-      { "id": "a", "point": 5 },
-      { "id": "b", "point": 0 },
-      { "id": "c", "point": 0 },
-      { "id": "d", "point": 0 },
-      { "id": "e", "point": 0 }
-    ],
-    "category": "test_tiu"
-  },
-  {
-    "id": "def567abc890xyz",
-    "question": "Apakah Anda lebih suka bekerja dengan pendekatan yang terstruktur atau fleksibel?",
-    "options": [
-      { "id": "a", "label": "Terstruktur" },
-      { "id": "b", "label": "Fleksibel" },
-      { "id": "c", "label": "Kombinasi Keduanya" },
-      { "id": "d", "label": "Tidak Tertarik" },
-      { "id": "e", "label": "Tidak Memilih" }
-    ],
-    "answer": [
-      { "id": "a", "point": 5 },
-      { "id": "b", "point": 0 },
-      { "id": "c", "point": 0 },
-      { "id": "d", "point": 0 },
-      { "id": "e", "point": 0 }
-    ],
-    "category": "test_tiu"
-  },
-  {
-    "id": "ghi654pqr987abc",
-    "question": "Seberapa besar minat Anda terhadap perkembangan teknologi baru?",
-    "options": [
-      { "id": "a", "label": "Sangat Tertarik" },
-      { "id": "b", "label": "Tertarik" },
-      { "id": "c", "label": "Cukup Tertarik" },
-      { "id": "d", "label": "Tidak Tertarik" },
-      { "id": "e", "label": "Sangat Tidak Tertarik" }
-    ],
-    "answer": [
-      { "id": "a", "point": 5 },
-      { "id": "b", "point": 0 },
-      { "id": "c", "point": 0 },
-      { "id": "d", "point": 0 },
-      { "id": "e", "point": 0 }
-    ],
-    "category": "test_tiu"
+    "id": "stu234vwx567yz9",
+    "question": "Bagaimana Anda menggambarkan tingkat disiplin diri Anda?",
+    "options": {
+      "a": "Sangat disiplin dan konsisten.",
+      "b": "Cukup disiplin tetapi fleksibel.",
+      "c": "Disiplin dalam situasi tertentu.",
+      "d": "Kadang kurang disiplin.",
+      "e": "Sering menunda pekerjaan."
+    },
+    "answer": {
+      "a": 5,
+      "b": 4,
+      "c": 3,
+      "d": 2,
+      "e": 1
+    },
+    "category": "test_tkp"
   }
-];
+]
+
+module.exports = [
+  ...administrasi,
+  ...tiu,
+  ...twk,
+  ...tkp,
+]
